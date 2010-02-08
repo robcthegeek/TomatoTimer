@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TomatoTimer.Core.Tests", "Tests\TomatoTimer.Core.Tests.csproj", "{649A229D-7539-495C-B89D-6C3FC7CC655D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TomatoTimer.Core", "TomatoTimer.Core.csproj", "{776A5F78-515F-4924-B90C-BB854F61EBC3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{649A229D-7539-495C-B89D-6C3FC7CC655D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{649A229D-7539-495C-B89D-6C3FC7CC655D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{649A229D-7539-495C-B89D-6C3FC7CC655D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{649A229D-7539-495C-B89D-6C3FC7CC655D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{776A5F78-515F-4924-B90C-BB854F61EBC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{776A5F78-515F-4924-B90C-BB854F61EBC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{776A5F78-515F-4924-B90C-BB854F61EBC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{776A5F78-515F-4924-B90C-BB854F61EBC3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

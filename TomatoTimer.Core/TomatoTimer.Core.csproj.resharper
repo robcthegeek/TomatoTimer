@@ -1,0 +1,6 @@
+<Configuration>
+  <NamespaceFolders>
+    <SkipFolder>776A5F78-515F-4924-B90C-BB854F61EBC3/d:Timer/d:States</SkipFolder>
+    <SkipFolder>776A5F78-515F-4924-B90C-BB854F61EBC3/d:Timer</SkipFolder>
+  </NamespaceFolders>
+</Configuration>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+
+  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
+
+  <ItemGroup>
+    <Compile Include="*.csproj" />
+    <Compile Include="Tests\TomatoTimer.Core.Tests.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <Version>$(BUILD_NUMBER)</Version>
+  </PropertyGroup>
+
+  <Target Name="Build">
+
+    <AssemblyInfo CodeLanguage="CS"
+                OutputFile="$(MSBuildProjectDirectory)\Properties\AssemblyInfo.cs"
+                AssemblyTitle="TomatoTimer.Core"
+                AssemblyDescription="Tomato Timer Core"
+                AssemblyConfiguration=""
+                AssemblyCompany="Leonis Software"
+                AssemblyProduct="Tomato Timer"
+                AssemblyCopyright="Copyright © Leonis Software 2009"
+                AssemblyTrademark=""
+                ComVisible="false"
+                CLSCompliant="true"
+                Guid="fef52bf2-62a3-4cee-aa41-a541c20c0764"
+                AssemblyVersion="$(Version)"
+                AssemblyFileVersion="1.0.0.0" />
+
+    <Message Importance="high" Text="Compiling Debug Build" />
+    <MSBuild Projects="@(Compile)" Targets="Build" Properties="Configuration=Debug" />
+
+    <Message Importance="high" Text="Compiling Release Build" />
+    <MSBuild Projects="@(Compile)" Targets="Build" Properties="Configuration=Release" />
+
+  </Target>
+
+  <PropertyGroup>
+    <XunitBuildTaskPath>C:\Lib\xUnit\1.5 CTP\</XunitBuildTaskPath>
+  </PropertyGroup>
+
+  <UsingTask AssemblyFile="$(XunitBuildTaskPath)\xunit.runner.msbuild.dll"
+    TaskName="Xunit.Runner.MSBuild.xunit"/>
+
+
+  <Target Name="Tests" DependsOnTargets="Build">    
+      <xunit Assembly="Tests\bin\Debug\TomatoTimer.Core.Tests.dll" />   
+  </Target>
+
+</Project>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="TomatoTimer.Core">
+</Property><Property Name="Solution File" Value="C:\Code\Leonis\Desktop\TomatoTimer\Core\TomatoTimer.Core.sln">
+</Property><Property Name="User Options File" Value="C:\Code\Leonis\Desktop\TomatoTimer\Core\TomatoTimer.Core.suo">
+</Property><Property Name="Date" Value="28 September 2009">
+</Property><Property Name="Time" Value="23:08">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="TomatoTimer.Core.sln" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\TomatoTimer.Core.sln">
+</Event><Event ErrorLevel="0" Project="" Source="TomatoTimer.Core.suo" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\TomatoTimer.Core.suo">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\TomatoTimer.Core.Tests.csproj" Description="Project file successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\TomatoTimer.Core.Tests.csproj">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\TomatoTimer.Core.Tests.csproj.user" Description="Project user file successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\TomatoTimer.Core.Tests.csproj.user">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\AssemblyExtensionsTests.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\AssemblyExtensionsTests.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\DateTimeExtensionsTests.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\DateTimeExtensionsTests.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\TestConstants.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\TestConstants.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\Timer_Component\TimerComponent_Test.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\Timer_Component\TimerComponent_Test.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\Core_Timer\When_In_TomatoCompletedState.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\Core_Timer\When_In_TomatoCompletedState.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\Core_Timer\CoreTimer_Test.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\Core_Timer\CoreTimer_Test.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\Core_Timer\When_Inited_With_Default_Values.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\Core_Timer\When_Inited_With_Default_Values.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\Core_Timer\When_In_Break.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\Core_Timer\When_In_Break.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\Core_Timer\When_In_Set_Break.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\Core_Timer\When_In_Set_Break.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\Core_Timer\When_Stopped.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\Core_Timer\When_Stopped.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\Core_Timer\When_Tomato_Started.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\Core_Timer\When_Tomato_Started.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\TimeSpanExtensionsTests.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\TimeSpanExtensionsTests.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\TomatoEventMonitor.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\TomatoEventMonitor.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\Timer_Component\When_Started.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\Timer_Component\When_Started.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\lib\Rhino.Mocks.dll" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\lib\Rhino.Mocks.dll">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\lib\xunit.dll" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Tests\lib\xunit.dll">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\TomatoTimer.Core.Tests.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="TomatoTimer.Core.Tests" Source="Tests\TomatoTimer.Core.Tests.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="TomatoTimer.Core.csproj" Description="Project file successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\TomatoTimer.Core.csproj">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="AssemblyExtensions.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\AssemblyExtensions.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="DateTimeExtensions.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\DateTimeExtensions.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="Timer\TickEventArgs.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Timer\TickEventArgs.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="Timer\States\InterruptedState.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Timer\States\InterruptedState.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="Timer\ITimer.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Timer\ITimer.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="ITimerComponent.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\ITimerComponent.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="Timer\States\SetBreakRunningState.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Timer\States\SetBreakRunningState.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="Timer\States\StateChangeFailedEventArgs.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Timer\States\StateChangeFailedEventArgs.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="Timer\CoreTimer.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Timer\CoreTimer.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="TimerComponent.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\TimerComponent.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="Timer\States\TimerState.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Timer\States\TimerState.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="Timer\States\BreakRunningState.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Timer\States\BreakRunningState.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="Timer\States\StoppedState.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Timer\States\StoppedState.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="Timer\States\TomatoCompletedState.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Timer\States\TomatoCompletedState.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="Timer\States\TomatoRunningState.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Timer\States\TomatoRunningState.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="Timer\States\TransitionClassBase.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Timer\States\TransitionClassBase.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="TimeSpanExtensions.cs" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\TimeSpanExtensions.cs">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="Build.xml" Description="File successfully backed up as C:\Code\Leonis\Desktop\TomatoTimer\Core\Backup\Build.xml">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="TomatoTimer.Core.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="TomatoTimer.Core" Source="TomatoTimer.Core.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="TomatoTimer.Core.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="TomatoTimer.Core.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core.Tests" Source="Tests\TomatoTimer.Core.Tests.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="TomatoTimer.Core" Source="TomatoTimer.Core.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
