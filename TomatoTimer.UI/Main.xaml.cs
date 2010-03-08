@@ -3,17 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Reflection;
-using System.Threading;
 using System.Windows;
-using System.Windows.Forms;
-using System.Windows.Threading;
 using TomatoTimer.Core;
 using TomatoTimer.Plugins;
 using TomatoTimer.UI.Graphics;
 using TomatoTimer.UI.PluginModel;
-using TomatoTimer.UI.PluginModel.Default;
 using TomatoTimer.UI.Settings;
-using Timer = TomatoTimer.Core.CoreTimer;
 
 namespace TomatoTimer.UI
 {
@@ -22,6 +17,7 @@ namespace TomatoTimer.UI
     /// </summary>
     public partial class Main : Window
     {
+        private readonly ITimer timer;
         // TODO: This is a real hack to allow the MiniTimer/NotifyIcon Plugins Interim Access to Running Timer Core.
         private static Main instance;
         public static Main GetInstance()
@@ -31,21 +27,22 @@ namespace TomatoTimer.UI
 
         private HotKeys hotkeys;
 
-        public Timer Timer { get; private set; }
+        public ITimer Timer { get; private set; }
 
         [ImportMany(typeof(TimerEventPlugin))]
         List<TimerEventPlugin> TimerEventPluginImports { get; set; }
         AsyncMethodManager<TimerEventPlugin> ExecutingTimerEventPlugins { get; set; }
 
-        public Main()
+        public Main(ITimer timer)
         {
+            Timer = timer;
             instance = this;
             InitializeComponent();
 
             SetupTransitionMenu();
             InitialisePlugins();
             SetWindowTitle();
-            InitTomatoTimer();            
+            BindToTimerEvents();            
             InitHotKeys();
         }
 
@@ -75,27 +72,8 @@ namespace TomatoTimer.UI
             hotkeys.InterruptHotKeyPressed += delegate { Timer.Interrupt(); };
         }
 
-        void InitTomatoTimer()
+        void BindToTimerEvents()
         {
-                // Load Timings from Configuration.
-                int tomatoLen = Current.User.TomatoTime;
-                int breakLen = Current.User.BreakTime;
-                int setBreakLen = Current.User.SetBreakTime;
-
-                Timer = new Timer(new TimerComponent())
-                            {
-                                TomatoTimeSpan = new TimeSpan(0, 0, tomatoLen, 0),
-                                BreakTimeSpan = new TimeSpan(0, 0, breakLen, 0),
-                                SetBreakTimeSpan = new TimeSpan(0, 0, setBreakLen, 0)
-                            };
-
-#if DEBUG
-                var time = new TimeSpan(0, 0, 0, 10);
-                Timer.TomatoTimeSpan = time;
-                Timer.BreakTimeSpan = time;
-                Timer.SetBreakTimeSpan = time;
-#endif
-
                 Timer.TomatoStarted += timer_TomatoStarted;
                 Timer.TomatoEnded += timer_TomatoEnded;
                 Timer.BreakStarted += timer_BreakStarted;

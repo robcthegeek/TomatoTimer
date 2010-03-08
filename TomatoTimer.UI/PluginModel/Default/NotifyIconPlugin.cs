@@ -24,6 +24,8 @@ namespace TomatoTimer.UI.PluginModel.Default
 
         private void SetupNotifyIcon()
         {
+            // TODO: Need to Refactor the Core App Code so the Main Window Reference is
+            // not passed around - Add AppController and bind to events from that.
             mainWindow = Main.GetInstance();
             notify = new NotifyIconComponent(mainWindow)
                          {

@@ -55,10 +55,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=1.4.4.561, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Bin\Autofac.dll</HintPath>
-    </Reference>
+    <Reference Include="Autofac, Version=2.1.10.754, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL" />
     <Reference Include="ManagedWinapi, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Bin\ManagedWinapi.dll</HintPath>
@@ -124,6 +121,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\AppController.cs" />
     <Compile Include="Graphics\ControlExtensions.cs" />
     <Compile Include="PluginModel\AsyncMethodManager.cs" />
     <Compile Include="PluginModel\BackgroundWorkerAsyncMethod.cs" />
@@ -179,7 +177,6 @@
     </Content>
     <Content Include="lib\Autofac.dll" />
     <Content Include="lib\ManagedWinapi.dll" />
-    <Content Include="lib\ManagedWinapiNativeHelper.dll" />
     <Content Include="lib\System.ComponentModel.Composition.dll" />
     <Content Include="ReadMe.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
