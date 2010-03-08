@@ -31,6 +31,7 @@ namespace TomatoTimer.UI.PluginModel.Default
         {
             Show();
             mouseHasLeft = true;
+            LblTimeRemaining.Content = "Starting..";
         }
 
         public void SetBreakStarted()

@@ -18,7 +18,6 @@ namespace TomatoTimer.UI.PluginModel.Default
         public override void OnStartTomato()
         {
             win.TomatoStarted();
-            RefreshFromMain();
         }
 
         public override void OnEndTomato()
@@ -29,7 +28,6 @@ namespace TomatoTimer.UI.PluginModel.Default
         public override void OnStartBreak()
         {
             win.BreakStarted();
-            RefreshFromMain();
         }
 
         public override void OnEndBreak()
@@ -40,7 +38,6 @@ namespace TomatoTimer.UI.PluginModel.Default
         public override void OnStartSetBreak()
         {
             win.SetBreakStarted();
-            RefreshFromMain();
         }
 
         public override void OnEndSetBreak()
@@ -60,13 +57,6 @@ namespace TomatoTimer.UI.PluginModel.Default
             var ticksElapsed = args.TimeElapsed.Ticks;
             var progComplete = (ticksElapsed/totalTicks) * 100;
             win.Update(args.TimeRemaining, (int)progComplete);
-        }
-
-        void RefreshFromMain()
-        {
-            var main = Main.GetInstance();
-            var remaining = main.Timer.TimeRemaining;
-            win.Update(remaining, 0);
         }
     }
 }
