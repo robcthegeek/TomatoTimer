@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TomatoTimer.UI", "TomatoTimer.UI\TomatoTimer.UI.csproj", "{D927EC23-2EC0-4D98-9876-C90B8F33621B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TomatoTimer.UI.Tests", "TomatoTimer.UI.Tests\TomatoTimer.UI.Tests.csproj", "{697D753B-4CE4-43D9-AFF8-60A3EFE2F395}"
