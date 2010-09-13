@@ -12,7 +12,7 @@ using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("TomatoTimer.UI")]
+[assembly: AssemblyTitle("TomatoTimer")]
 [assembly: AssemblyDescription("Tomato Timer User Interface")]
 [assembly: AssemblyCompany("robcthegeek")]
 [assembly: AssemblyProduct("Tomato Timer")]
