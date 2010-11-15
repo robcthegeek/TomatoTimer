@@ -1,7 +1,4 @@
 using System;
-using TomatoTimer.Core;
-using Rhino.Mocks;
-using Rhino.Mocks.Constraints;
 using Xunit;
 
 namespace TomatoTimer.Core.Tests.Core_Timer

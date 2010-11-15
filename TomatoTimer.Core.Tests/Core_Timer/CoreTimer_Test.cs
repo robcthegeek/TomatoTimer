@@ -1,20 +1,19 @@
 using System;
-using TomatoTimer.Core;
-using Rhino.Mocks;
 using Xunit;
+using Moq;
 
 namespace TomatoTimer.Core.Tests.Core_Timer
 {
     public abstract class CoreTimer_Test
     {
         protected readonly ITimer timer;
-        protected readonly ITimerComponent timerComponent;
+        protected readonly Mock<ITimerComponent> timerComponent;
         protected readonly TomatoEventMonitor monitor;
 
         protected CoreTimer_Test()
         {
-            timerComponent = MockRepository.GenerateMock<ITimerComponent>();
-            timer = new CoreTimer(timerComponent);
+            timerComponent = new Mock<ITimerComponent>();
+            timer = new CoreTimer(timerComponent.Object);
             monitor = new TomatoEventMonitor(timer);
         }
 
@@ -32,21 +31,21 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         protected void StartTomato()
         {
             timer.StartTomato();
-            timerComponent.Expect(x => x.Start(timer.TomatoTimeSpan));
+            timerComponent.Setup(x => x.Start(timer.TomatoTimeSpan));
             timerComponent.Raise(x => x.TimerStarted += null, this, EventArgs.Empty);
         }
 
         protected void StartBreak()
         {
             timer.StartBreak();
-            timerComponent.Expect(x => x.Start(timer.BreakTimeSpan));
+            timerComponent.Setup(x => x.Start(timer.BreakTimeSpan));
             timerComponent.Raise(x => x.TimerStarted += null, this, EventArgs.Empty);
         }
 
         public void StartSetBreak()
         {
             timer.StartSetBreak();
-            timerComponent.Expect(x => x.Start(timer.SetBreakTimeSpan));
+            timerComponent.Setup(x => x.Start(timer.SetBreakTimeSpan));
             timerComponent.Raise(x => x.TimerStarted += null, this, EventArgs.Empty);
         }
 
@@ -85,7 +84,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         public void AssertTimeRemainingFromReturnedTimerComponent()
         {
             var expected = new TimeSpan(0, 0, 42, 0);
-            timerComponent.Expect(x => x.Remaining).Return(expected);
+            timerComponent.Setup(x => x.Remaining).Returns(expected);
             Assert.Equal(expected, timer.TimeRemaining);
         }
         #endregion

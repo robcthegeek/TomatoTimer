@@ -71,7 +71,10 @@
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="xunit, Version=1.4.9.1416, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL" />
+    <Reference Include="xunit, Version=1.4.9.1416, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonLibs\xUnit\1.6.1\xunit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestConstants.cs" />
@@ -99,7 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\Rhino.Mocks.dll" />
-    <Content Include="lib\xunit.dll" />
     <None Include="Resources\CustomAppSettings.txt" />
   </ItemGroup>
   <ItemGroup>

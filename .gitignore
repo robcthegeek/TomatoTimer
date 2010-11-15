@@ -1,0 +1,10 @@
+#ReSharper
+_ReSharper.*
+*.ReSharper.user
+
+# VS Cache/Junk
+obj
+bin
+App_Data
+*.suo
+*.user
