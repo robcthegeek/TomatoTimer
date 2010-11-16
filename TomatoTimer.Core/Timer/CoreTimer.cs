@@ -6,7 +6,6 @@ namespace TomatoTimer.Core
     {
         private ITimerComponent TimerComponent { get; set; }
         
-        #region Events
         /// <summary>
         /// Raised When a Tomato is Started.
         /// </summary>
@@ -115,9 +114,7 @@ namespace TomatoTimer.Core
                 Tick(this, new TickEventArgs(this, e.TimeElapsed, e.TimeRemaining));
             }
         }
-        #endregion
 
-        #region States
         internal TimerState timerStoppedState;
         internal TimerState tomatoRunningState;
         internal TimerState breakRunningState;
@@ -143,8 +140,6 @@ namespace TomatoTimer.Core
                     state.OnTransitionTo();
             }
         }
-
-        #endregion
 
         public TimeSpan TomatoTimeSpan { get; set; }
         public TimeSpan BreakTimeSpan { get; set; }

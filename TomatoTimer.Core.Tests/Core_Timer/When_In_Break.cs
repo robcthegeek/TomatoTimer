@@ -4,7 +4,7 @@ using Xunit;
 
 namespace TomatoTimer.Core.Tests.Core_Timer
 {
-    public class When_In_Break : CoreTimer_Test
+    public class When_In_Break : CoreTimer_Tests
     {
         public When_In_Break()
         {
@@ -18,7 +18,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         }
 
         [Fact]
-        public void StartTomato_Throws_InvalidOpException()
+        public void StartTomato_Throws_InvalidOperationException()
         {
             Assert.Throws<InvalidOperationException>(() => StartTomato());
         }

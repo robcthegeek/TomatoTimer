@@ -4,20 +4,22 @@ using Moq;
 
 namespace TomatoTimer.Core.Tests.Core_Timer
 {
-    public abstract class CoreTimer_Test
+    /// <summary>
+    /// Base Class for Testing of the Timer State Machine.
+    /// </summary>
+    public abstract class CoreTimer_Tests
     {
         protected readonly ITimer timer;
         protected readonly Mock<ITimerComponent> timerComponent;
         protected readonly TomatoEventMonitor monitor;
 
-        protected CoreTimer_Test()
+        protected CoreTimer_Tests()
         {
             timerComponent = new Mock<ITimerComponent>();
             timer = new CoreTimer(timerComponent.Object);
             monitor = new TomatoEventMonitor(timer);
         }
 
-        #region Utility Methods for Tests
         protected void RaiseTimerComponentStarted()
         {
             timerComponent.Raise(x => x.TimerStarted += null, this, EventArgs.Empty);
@@ -74,12 +76,6 @@ namespace TomatoTimer.Core.Tests.Core_Timer
             Assert.Equal(assert, monitor.InterruptedEventRaised);
         }
 
-        public void AssertTimeRemainingIsZero()
-        {
-            var zero = new TimeSpan(0, 0, 0, 0);
-            Assert.Equal(zero, timer.TimeRemaining);
-        }
-
         [Fact]
         public void AssertTimeRemainingFromReturnedTimerComponent()
         {
@@ -87,6 +83,5 @@ namespace TomatoTimer.Core.Tests.Core_Timer
             timerComponent.Setup(x => x.Remaining).Returns(expected);
             Assert.Equal(expected, timer.TimeRemaining);
         }
-        #endregion
     }
 }

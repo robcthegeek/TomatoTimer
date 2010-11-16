@@ -4,49 +4,49 @@ using Xunit;
 
 namespace TomatoTimer.Core.Tests.Core_Timer
 {
-    public class When_Inited_With_Default_Values : CoreTimer_Test
+    public class When_Inited_With_Default_Values : CoreTimer_Tests
     {
         [Fact]
-        public void tomato_timespan_defaults_to_25_min()
+        public void TomatoTimeSpan_25min()
         {
             var ts = timer.TomatoTimeSpan;
             Assert.Equal(TestConstants.TomatoTimeSpan, ts);
         }
 
         [Fact]
-        public void break_timespan_defaults_to_5_min()
+        public void BreakTimeSpan_5min()
         {
             var ts = timer.BreakTimeSpan;
             Assert.Equal(TestConstants.BreakTimeSpan, ts);
         }
 
         [Fact]
-        public void setbreak_timespan_defaults_to_30_min()
+        public void SetBreakTimeSpan_30min()
         {
             var ts = timer.SetBreakTimeSpan;
             Assert.Equal(TestConstants.SetBreakTimeSpan, ts);
         }
 
         [Fact]
-        public void state_is_timerstoppedstate()
+        public void State_StopppedState()
         {
             Assert.True(timer.State is CoreTimer.StoppedState);
         }
 
         [Fact]
-        public void running_is_false()
+        public void Running_False()
         {
             Assert.False(timer.Running);
         }
 
         [Fact]
-        public void timeremaining_is_zero()
+        public void TimeRemaining_Is_Zero()
         {
-            AssertTimeRemainingIsZero();
+            Assert.Equal(TimeSpan.Zero, timer.TimeRemaining);
         }
 
         [Fact]
-        public void timercomponent_started_throws_invalid_op()
+        public void TimerComponent_RaisesComponentStarted_ThrowsInvalidOperationException()
         {
             Assert.Throws<InvalidOperationException>(() => RaiseTimerComponentStarted());
         }

@@ -4,7 +4,7 @@ using Xunit;
 
 namespace TomatoTimer.Core.Tests.Core_Timer
 {
-    public class When_In_TomatoCompletedState : CoreTimer_Test
+    public class When_In_TomatoCompletedState : CoreTimer_Tests
     {
         public When_In_TomatoCompletedState()
         {
@@ -118,7 +118,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         [Fact]
         public void TimeRemaining_Returns_Zero()
         {
-            AssertTimeRemainingIsZero();
+            Assert.Equal(TimeSpan.Zero, timer.TimeRemaining);
         }
     }
 }

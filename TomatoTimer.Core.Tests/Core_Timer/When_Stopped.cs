@@ -3,7 +3,7 @@ using Xunit;
 
 namespace TomatoTimer.Core.Tests.Core_Timer
 {
-    public class When_Stopped : CoreTimer_Test
+    public class When_Stopped : CoreTimer_Tests
     {
         public When_Stopped()
         {
@@ -11,77 +11,76 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         }
 
         [Fact]
-        public void state_is_timerstoppedstate()
+        public void State_Is_StoppedState()
         {
             Assert.True(timer.State is CoreTimer.StoppedState);
         }
 
         [Fact]
-        public void timerremaining_returns_zero()
+        public void TimeRemaining_Is_Zero()
         {
-            AssertTimeRemainingIsZero();
+            Assert.Equal(TimeSpan.Zero, timer.TimeRemaining);
         }
 
         [Fact]
-        public void running_returns_false()
+        public void Running_Is_False()
         {
             Assert.False(timer.Running);
         }
 
         [Fact]
-        public void starttomato_moves_timer_to_tomatorunningstate()
+        public void State_WhenStarted_IsTomatoRunningState()
         {
             StartTomato();
             Assert.True(timer.State is CoreTimer.TomatoRunningState);
         }
 
         [Fact]
-        public void starttomato_raises_tomatostarted_event()
+        public void StartTomato_Raises_TomatoStartedEvent()
         {
             StartTomato();
             AssertTomatoStartedEventRaised(true);
         }
 
         [Fact]
-        public void startbreak_raises_breakstarted_event()
+        public void StartBreak_Raises_BreakStartedEvent()
         {
             StartBreak();
             AssertBreakStartedEventRaised(true);
         }
 
         [Fact]
-        public void startsetbreak_moves_timer_to_setbreakrunningstate()
+        public void State_AfterStartSetBreak_IsSetBreakRunningState()
         {
             StartSetBreak();
             Assert.True(timer.State is CoreTimer.SetBreakRunningState);
         }
 
         [Fact]
-        public void startsetbreak_raises_setbreakstarted_event()
+        public void StartSetBreak_Raises_SetBreakStarted()
         {
             StartSetBreak();
             AssertSetBreakStartedEventRaised(true);
         }
 
         [Fact]
-        public void interrupt_raises_statechangefailed()
+        public void Interrupt_Raises_StateChangeFailed()
         {
             timer.Interrupt();
             var e = monitor.StateChangeFailedEventArgs;
-            Assert.NotNull(e);
             Assert.True(e.StateFrom is CoreTimer.StoppedState);
             Assert.True(e.StateTo is CoreTimer.InterruptedState);
         }
 
         [Fact]
-        public void interrupt_does_not_raise_interrupted_event()
+        public void Interrupt_DoesNotRaise_InterruptedEvent()
         {
             timer.Interrupt();
             AssertInterruptedEventRaised(false);
         }
 
         [Fact]
-        public void timercomponentstarted_with_no_state_throws_invalidopex()
+        public void TimerComponent_RaisesComponentStarted_ThrowsInvalidOperationException()
         {
             Assert.Throws<InvalidOperationException>(() => RaiseTimerComponentStarted());
         }
