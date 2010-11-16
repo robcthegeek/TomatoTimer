@@ -17,8 +17,20 @@ namespace TomatoTimer.Core.Tests.Timer_Component
             timerComponent.Start(TimerLength);
         }
 
-        // TODO (RC): Remaining is MinValue on Init
-        // TODO (RC): Elapsed is MinValue on Init
+        [Fact]
+        public void Remaining_OnCtor_TimeSpanZero()
+        {
+            var component = new TimerComponent();
+            Assert.Equal(TimeSpan.Zero, component.Remaining);
+        }
+
+        [Fact]
+        public void Elapsed_OnCtor_TimeSpanZero()
+        {
+            var component = new TimerComponent();
+            Assert.Equal(TimeSpan.Zero, component.Elapsed);
+        }
+
         // TODO (RC): Start Raises Started Event
         // TODO (RC): Start 2nd Time Throws InvalidOperationException
         // TODO (RC): Start w/ TimeSpan.Zero Throws ArgumentException
