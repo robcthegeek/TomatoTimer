@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel;
-using Rhino.Mocks;
 using Xunit;
 
 namespace TomatoTimer.Tests.Unit.UI.Plugins
@@ -21,7 +20,7 @@ namespace TomatoTimer.Tests.Unit.UI.Plugins
         [Fact]
         public void RunningCount_Returns_To_Zero_After_ExecuteAsync()
         {
-            manager.ExecuteAsync(plugin, (m, c) => m.AbortableMethod(c));
+            manager.ExecuteAsync(plugin.Object, (m, c) => m.AbortableMethod(c));
             method.Raise(m => m.MethodFinished += null, this, EventArgs.Empty);
             Assert.Equal(0, manager.RunningCount);
         }
@@ -29,9 +28,10 @@ namespace TomatoTimer.Tests.Unit.UI.Plugins
         [Fact]
         public void Abort_Calls_Method_Abort()
         {
-            manager.ExecuteAsync(plugin, (p, c) => p.AbortableMethod(c));
+            method.Setup(m => m.Abort()).Verifiable();
+            manager.ExecuteAsync(plugin.Object, (p, c) => p.AbortableMethod(c));
             manager.Abort();
-            method.AssertWasCalled(m => m.Abort());
+            method.Verify();
         }
 
         [Fact]
@@ -39,7 +39,7 @@ namespace TomatoTimer.Tests.Unit.UI.Plugins
         {
             var raised = false;
             manager.Aborting += (sender, args) => raised = true;
-            manager.ExecuteAsync(plugin, (p, c) => p.AbortableMethod(c));
+            manager.ExecuteAsync(plugin.Object, (p, c) => p.AbortableMethod(c));
             manager.Abort();
 
             Assert.True(raised);
@@ -50,7 +50,7 @@ namespace TomatoTimer.Tests.Unit.UI.Plugins
         {
             var raised = false;
             manager.Aborted += (sender, args) => raised = true;
-            manager.ExecuteAsync(plugin, (p, c) => p.AbortableMethod(c));
+            manager.ExecuteAsync(plugin.Object, (p, c) => p.AbortableMethod(c));
             manager.Abort();
             Assert.True(raised);
         }

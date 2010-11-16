@@ -1,7 +1,7 @@
 ﻿using System;
 using TomatoTimer.UI.Settings;
-using Rhino.Mocks;
 using Xunit;
+using Moq;
 
 namespace TomatoTimer.Tests.Unit.UI.Settings
 {
@@ -9,12 +9,12 @@ namespace TomatoTimer.Tests.Unit.UI.Settings
     {
         protected SettingsFile<AppSettings> file;
         protected AppSettings settings;
-        protected IXmlFileStore store;
+        protected Mock<IXmlFileStore> store;
 
         public SettingsFileTest()
         {
-            store = MockRepository.GenerateMock<IXmlFileStore>();
-            file = new SettingsFile<AppSettings>("TestFile", store);
+            store = new Mock<IXmlFileStore>(MockBehavior.Strict);
+            file = new SettingsFile<AppSettings>("TestFile", store.Object);
             settings = new AppSettings();
         }
 
@@ -70,7 +70,7 @@ namespace TomatoTimer.Tests.Unit.UI.Settings
         [Fact]
         public void can_pass_filename_via_ctor()
         {
-            file = new SettingsFile<AppSettings>("testfile", store);
+            file = new SettingsFile<AppSettings>("testfile", store.Object);
             Assert.Equal("testfile" + FileExtension, file.FileName);
         }
 
@@ -78,28 +78,29 @@ namespace TomatoTimer.Tests.Unit.UI.Settings
         public void passing_empty_filename_to_ctor_throws_argex()
         {
             Assert.Throws<ArgumentException>(
-                () => file = new SettingsFile<AppSettings>(string.Empty, store));
+                () => file = new SettingsFile<AppSettings>(string.Empty, store.Object));
         }
 
         [Fact]
         public void passing_null_filename_to_ctor_throws_argex()
         {
             Assert.Throws<ArgumentException>(
-                () => file = new SettingsFile<AppSettings>(null, store));
+                () => file = new SettingsFile<AppSettings>(null, store.Object));
         }
 
         [Fact]
         public void filestore_checks_for_existance_of_file()
         {
+            store.Setup(x => x.Exists("test" + FileExtension)).Verifiable();
             file.FileName = "test";
-            store.AssertWasCalled(x => x.Exists("test" + FileExtension));
+            store.Verify();
         }
 
         [Fact]
         public void raises_filenotfound_when_no_file_exists()
         {
             // Arrange
-            store.Expect(x => x.Exists("test" + FileExtension)).Return(false);
+            store.Setup(x => x.Exists("test" + FileExtension)).Returns(false);
             bool raised = false;
             file.FileNotFound += ((sender, e) => { raised = true; });
             // Act
@@ -148,13 +149,13 @@ namespace TomatoTimer.Tests.Unit.UI.Settings
         public void store_is_passed_xml_to_save()
         {
             // Arrange
-            store.Expect(x => x.SaveXml(string.Empty)).IgnoreArguments();
+            store.Setup(x => x.SaveXml(It.IsAny<string>())).Verifiable();
 
             // Act
             file.Save(settings);
 
             // Assert
-            store.VerifyAllExpectations();
+            store.Verify();
         }
 
         [Fact]
@@ -167,14 +168,14 @@ namespace TomatoTimer.Tests.Unit.UI.Settings
             file.Save(nullSettings);
 
             // Assert
-            store.AssertWasNotCalled(x => x.SaveXml(Arg<String>.Is.Anything));
+            store.VerifyAll();
         }
 
         [Fact]
         public void if_xmlfilestore_throws_error_errorsavingfile_is_raised()
         {
             // Arrange
-            store.Expect(x => x.SaveXml(Arg<string>.Is.Anything)).Throw(new Exception());
+            store.Setup(x => x.SaveXml(It.IsAny<string>())).Throws(new Exception());
             bool raised = false;
             file.ErrorSavingFile += (sender, args) => raised = true;
 
@@ -192,7 +193,7 @@ namespace TomatoTimer.Tests.Unit.UI.Settings
         public void when_store_throws_ex_raises_errorloadingfile()
         {
             // Arrange
-            store.Expect(x => x.LoadXml(Arg<string>.Is.Anything)).Throw(new Exception());
+            store.Setup(x => x.LoadXml(It.IsAny<string>())).Throws(new Exception());
             bool raised = false;
             file.ErrorLoadingFile += (sender, args) => raised = true;
 
@@ -208,7 +209,7 @@ namespace TomatoTimer.Tests.Unit.UI.Settings
         {
             // Arrange
             var @default = new AppSettings();
-            store.Expect(x => x.LoadXml(Arg<string>.Is.Anything)).Throw(new Exception());
+            store.Setup(x => x.LoadXml(It.IsAny<string>())).Throws(new Exception());
 
             // Act
             var loaded = file.Load();
@@ -222,13 +223,13 @@ namespace TomatoTimer.Tests.Unit.UI.Settings
         public void xml_is_loaded_from_store()
         {
             // Arrange
-            store.Expect(x => x.LoadXml(Arg<string>.Is.Anything)).Return("<appSettings />");
+            store.Expect(x => x.LoadXml(It.IsAny<string>())).Returns("<appSettings />").Verifiable();
 
             // Act
             file.Load();
 
             // Assert
-            store.VerifyAllExpectations();
+            store.Verify();
         }
     }
 }

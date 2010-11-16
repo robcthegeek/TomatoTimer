@@ -1,36 +1,29 @@
 ﻿using System;
 using System.ComponentModel;
 using TomatoTimer.UI.PluginModel;
-using Rhino.Mocks;
-using Rhino.Mocks.Interfaces;
+using Moq;
 
 namespace TomatoTimer.Tests.Unit.UI.Plugins
 {
     public class AsyncMethodManagerTest
     {
         protected readonly IAsyncMethodManager<DummyPlugin> manager;
-        protected readonly IAsyncMethod method;
-        protected readonly DummyPlugin plugin;
+        protected readonly Mock<IAsyncMethod> method;
+        protected readonly Mock<DummyPlugin> plugin;
 
         public AsyncMethodManagerTest()
         {
-            plugin = MockRepository.GenerateMock<DummyPlugin>();
-            method = MockRepository.GenerateMock<IAsyncMethod>();
+            plugin = new Mock<DummyPlugin>();
+            method = new Mock<IAsyncMethod>(MockBehavior.Strict);
 
-            // Set Up Stub
-            method.Expect(m => m.RunAsync()).Do(
-                new Action(() => method.Raise(m => m.MethodStarted += null, this, new DoWorkEventArgs(null))));
+            method.Setup(m => m.RunAsync()).Raises(
+                m => m.MethodStarted += null, this, new DoWorkEventArgs(null));
 
-            plugin.Expect(p => p.AbortableMethod(null))
-                .IgnoreArguments()
-                .CallOriginalMethod(OriginalCallOptions.NoExpectation);
-
-            plugin.Expect(p => p.NonAbortableMethod(null))
-                .IgnoreArguments()
-                .CallOriginalMethod(OriginalCallOptions.NoExpectation);
+            plugin.Setup(p => p.AbortableMethod(It.IsAny<ExecutionContext>()));
+            plugin.Setup(p => p.NonAbortableMethod(It.IsAny<ExecutionContext>()));
 
             manager = new AsyncMethodManager<DummyPlugin>();
-            manager.AsyncMethod = method;
+            manager.AsyncMethod = method.Object;
         }
 
         protected bool MethodAbortable
@@ -38,7 +31,7 @@ namespace TomatoTimer.Tests.Unit.UI.Plugins
             set
             {
                 if (value)
-                    method.Expect(m => m.Abort()).Return(true);
+                    method.Setup(m => m.Abort()).Returns(true);
             }
         }
     }

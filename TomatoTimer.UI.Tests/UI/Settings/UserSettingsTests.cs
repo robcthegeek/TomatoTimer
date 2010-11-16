@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
 using TomatoTimer.UI.Settings;
-using Rhino.Mocks;
 using Xunit;
+using Moq;
 
 namespace TomatoTimer.Tests.Unit.UI.Settings
 {
@@ -9,13 +9,13 @@ namespace TomatoTimer.Tests.Unit.UI.Settings
     {
         protected UserSettings settings;
         protected SettingsFile<UserSettings> file;
-        protected IXmlFileStore store;
+        protected Mock<IXmlFileStore> store;
 
         public UserSettingsTest()
         {
             settings = new UserSettings();
-            store = MockRepository.GenerateMock<IXmlFileStore>();
-            file = new SettingsFile<UserSettings>(store);
+            store = new Mock<IXmlFileStore>();
+            file = new SettingsFile<UserSettings>(store.Object);
         }
     }
 

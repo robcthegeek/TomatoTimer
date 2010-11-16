@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Media;
-using Rhino.Mocks;
 using Xunit;
+using Moq;
 
 namespace TomatoTimer.Tests.Unit.UI.Settings
 {
@@ -15,7 +15,7 @@ namespace TomatoTimer.Tests.Unit.UI.Settings
             Xml = new DefaultUserSettingsXml();
             SetupXml(Xml);
             var content = Xml.ToString();
-            store.Expect(x => x.LoadXml(Arg<string>.Is.Anything)).Return(content);
+            store.Setup(x => x.LoadXml(It.IsAny<string>())).Returns(content);
             settings = file.Load();
         }
     }

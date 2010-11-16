@@ -3,8 +3,9 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 using TomatoTimer.UI.Settings;
-using Rhino.Mocks;
+
 using Xunit;
+using Moq;
 
 namespace TomatoTimer.Tests.Unit.UI.Settings
 {
@@ -121,18 +122,18 @@ namespace TomatoTimer.Tests.Unit.UI.Settings
 
     public abstract class AppSettingsXmlParsingTest : AppSettingsTest
     {
-        protected readonly IXmlFileStore store;
+        protected readonly Mock<IXmlFileStore> store;
 
         protected AppSettingsXmlParsingTest()
         {
-            store = MockRepository.GenerateMock<IXmlFileStore>();
+            store = new Mock<IXmlFileStore>();
             RefreshSettings();
         }
 
         protected void RefreshSettings()
         {
-            store.Expect(x => x.LoadXml(Arg<string>.Is.Anything)).Return(Xml());
-            var file = new SettingsFile<AppSettings>(store);
+            store.Setup(x => x.LoadXml(It.IsAny<string>())).Returns(Xml());
+            var file = new SettingsFile<AppSettings>(store.Object);
             settings = file.Load();
         }
 

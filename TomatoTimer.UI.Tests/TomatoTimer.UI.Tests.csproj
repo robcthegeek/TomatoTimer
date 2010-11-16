@@ -52,10 +52,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\..\CommonLibs\Moq\4.0.10827\NET40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Rhino.Mocks, Version=3.5.0.1337, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -101,7 +103,6 @@
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lib\Rhino.Mocks.dll" />
     <None Include="Resources\CustomAppSettings.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,3 @@
-using Rhino.Mocks;
 using Xunit;
 
 namespace TomatoTimer.Tests.Unit.UI.Plugins
@@ -13,8 +12,8 @@ namespace TomatoTimer.Tests.Unit.UI.Plugins
         [Fact]
         public void Abort_Does_Not_Call_Method_Abort_On_NonAbortable_Method()
         {
-            manager.ExecuteAsync(plugin, (p, c) => p.NonAbortableMethod(c));
-            method.AssertWasNotCalled(m => m.Abort());
+            manager.ExecuteAsync(plugin.Object, (p, c) => p.NonAbortableMethod(c));
+            method.Verify(m => m.Abort());
         }
 
         [Fact]
@@ -23,7 +22,7 @@ namespace TomatoTimer.Tests.Unit.UI.Plugins
             MethodAbortable = false;
             var raised = false;
             manager.Aborted += (sender, args) => raised = true;
-            manager.ExecuteAsync(plugin, (p, c) => p.AbortableMethod(c));
+            manager.ExecuteAsync(plugin.Object, (p, c) => p.AbortableMethod(c));
             manager.Abort();
             Assert.False(raised);
         }

@@ -1,28 +1,29 @@
 ﻿using System.Collections.Generic;
 using TomatoTimer.UI.PluginModel;
-using Rhino.Mocks;
 using Xunit;
+using Moq;
+using System;
 
 namespace TomatoTimer.Tests.Unit.UI.Plugins
 {
     public class PluginsCollectionTests
     {
-        private readonly DummyPlugin plugin;
-        private readonly IAsyncMethodManager<DummyPlugin> manager;
+        private readonly Mock<DummyPlugin> plugin;
+        private readonly Mock<IAsyncMethodManager<DummyPlugin>> manager;
         private readonly PluginsCollection<DummyPlugin> collection;
 
         public PluginsCollectionTests()
         {
-            plugin = MockRepository.GenerateMock<DummyPlugin>();
-            manager = MockRepository.GenerateMock<IAsyncMethodManager<DummyPlugin>>();
-            collection = new PluginsCollection<DummyPlugin>(manager) { plugin };
+            plugin = new Mock<DummyPlugin>();
+            manager = new Mock<IAsyncMethodManager<DummyPlugin>>();
+            collection = new PluginsCollection<DummyPlugin>(manager.Object) { plugin.Object };
         }
 
         [Fact]
         public void Inited_With_Collection_Collection_Counts_Equal()
         {
-            var plugins = new List<DummyPlugin> { plugin };
-            var ctorColl = new PluginsCollection<DummyPlugin>(manager, plugins);
+            var plugins = new List<DummyPlugin> { plugin.Object };
+            var ctorColl = new PluginsCollection<DummyPlugin>(manager.Object, plugins);
             Assert.Equal(plugins.Count, ctorColl.Count);
         }
 
@@ -42,9 +43,9 @@ namespace TomatoTimer.Tests.Unit.UI.Plugins
         [Fact]
         public void Execute_Calls_Manager_ExecuteAsync()
         {
-            manager.Expect(m => m.ExecuteAsync(null, null)).IgnoreArguments();
+            manager.Setup(m => m.ExecuteAsync(It.IsAny<DummyPlugin>(), It.IsAny<Action<DummyPlugin, ExecutionContext>>()));
             collection.Execute((p,c) => p.AbortableMethod(c));
-            manager.VerifyAllExpectations();
+            manager.VerifyAll();
         }
     }
 }
