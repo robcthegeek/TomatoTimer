@@ -76,7 +76,7 @@
     <Compile Include="DateTimeExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestConstants.cs" />
-    <Compile Include="Timer_Component\TimerComponent_Test.cs" />
+    <Compile Include="TimerComponentTests.cs" />
     <Compile Include="Core_Timer\When_In_TomatoCompletedState.cs" />
     <Compile Include="Core_Timer\CoreTimer_Test.cs" />
     <Compile Include="Core_Timer\When_Inited_With_Default_Values.cs" />
@@ -86,7 +86,6 @@
     <Compile Include="Core_Timer\When_Tomato_Started.cs" />
     <Compile Include="TimeSpanExtensionsTests.cs" />
     <Compile Include="TomatoEventMonitor.cs" />
-    <Compile Include="Timer_Component\When_Started.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TomatoTimer.Core\TomatoTimer.Core.csproj">

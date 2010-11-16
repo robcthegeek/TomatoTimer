@@ -13,4 +13,5 @@
 
 ## ToDo
 
-- 
+- Rewrite TimerComponent to Remove Dependency on DispatcherTimer
+	- Exctract Interface 

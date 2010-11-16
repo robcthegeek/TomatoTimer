@@ -1,17 +1,36 @@
+﻿using TomatoTimer.Core;
+using Xunit;
 using System;
 using System.Threading;
-using Xunit;
 
 namespace TomatoTimer.Core.Tests.Timer_Component
 {
-    public class When_Started : TimerComponent_Test
+    public class TimerComponentTests
     {
-        TimeSpan TimerLength { get { return new TimeSpan(0, 0, 0, 42); } }
+        static TimeSpan TimerLength { get { return new TimeSpan(0, 0, 0, 42); } }
 
-        public When_Started()
+        protected ITimerComponent timerComponent;
+
+        public TimerComponentTests()
         {
+            timerComponent = new TimerComponent();
             timerComponent.Start(TimerLength);
         }
+
+        // TODO (RC): Remaining is MinValue on Init
+        // TODO (RC): Elapsed is MinValue on Init
+        // TODO (RC): Start Raises Started Event
+        // TODO (RC): Start 2nd Time Throws InvalidOperationException
+        // TODO (RC): Start w/ TimeSpan.Zero Throws ArgumentException
+        // TODO (RC): Stop without Start Throws InvalidOperationException
+        // TODO (RC): Stop w/ Start Raises Stopped Event
+        // TODO (RC): Elapsed After Start and Stop is Run Time
+        // TODO (RC): Elapsed While Running Continuously Re-Calcs Running Time
+        // TODO (RC): Add TimeStarted to TimerComponent.Started EventArgs
+        // TODO (RC): Add Elapsed to TimerComponent.Stopped EventArgs
+        // TODO (RC): Add TimeStopped to TimerComponent.Stopped EventArgs
+
+        // TODO (RC): Delete Everything Below this Comment!
 
         [Fact]
         public void Elapsed_Increases_As_Time_Passes()

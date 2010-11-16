@@ -5,6 +5,8 @@ namespace TomatoTimer.Core
 {
     public class TimerComponent : ITimerComponent
     {
+        // TODO (RC): Extract Dependency on DispatcherTimer
+
         private readonly DispatcherTimer timer;
         private DateTime startTime;
         private DateTime stopTime;
