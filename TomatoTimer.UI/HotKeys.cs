@@ -79,7 +79,6 @@ namespace TomatoTimer.UI
             }
             catch (HotkeyAlreadyInUseException)
             {
-                // TODO: Create a Better Event to Get Raised.
                 OnBindHotKeyFailed(EventArgs.Empty);
                 return null;
             }

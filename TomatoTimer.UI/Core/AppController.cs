@@ -2,7 +2,7 @@ namespace TomatoTimer.UI.Core
 {
     public class AppController
     {
-        // TODO: This class should be responsible for spinning up the required components for the App.
+        // This class should be responsible for spinning up the required components for the App.
 
         /* Namely:
          * 

@@ -18,7 +18,7 @@ namespace TomatoTimer.UI
     public partial class Main : Window
     {
         private readonly ITomatoTimer timer;
-        // TODO: This is a real hack to allow the MiniTimer/NotifyIcon Plugins Interim Access to Running Timer Core.
+        // HACK: This is a real hack to allow the MiniTimer/NotifyIcon Plugins Interim Access to Running Timer Core.
         private static Main instance;
         public static Main GetInstance()
         {
@@ -48,7 +48,6 @@ namespace TomatoTimer.UI
 
         private void InitialisePlugins()
         {
-            // TODO: Spin Up the Plugins Loaded in the Current Directory and "Plugins" Directory.
             var asmCat = new AssemblyCatalog(Assembly.GetExecutingAssembly());
             var container = new CompositionContainer(asmCat);
             container.ComposeParts(this);

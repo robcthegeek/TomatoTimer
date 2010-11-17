@@ -47,7 +47,7 @@ namespace TomatoTimer.UI
 
         private static ITomatoTimer CreateTimerFromSettings()
         {
-            // TODO: This Configuration Should be Managed By AppController
+            // HACK: This Configuration Should be Managed By AppController
             // Load Timings from Configuration.
             var tomatoLen = Settings.Current.User.TomatoTime;
             var breakLen = Settings.Current.User.BreakTime;

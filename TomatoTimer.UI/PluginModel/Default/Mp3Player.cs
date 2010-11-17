@@ -16,7 +16,7 @@ namespace TomatoTimer.UI.PluginModel.Default
             player = new MediaPlayer();
             player.Volume = 100;
             FriendlyName = "Basic Mp3 Player";
-            FriendlyStatus = "TODO: Return Current Status";
+            FriendlyStatus = "No Status Set";
         }
 
         private void PlayFile(string path)

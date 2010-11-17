@@ -37,9 +37,6 @@ namespace TomatoTimer.UI.PluginModel
         /// </summary>
         int RunningCount { get; }
 
-        /// <summary>
-        /// TODO: This is to be removed once IoC Container in Place.
-        /// </summary>
         IAsyncMethod AsyncMethod { get; set; }
 
         /// <summary>

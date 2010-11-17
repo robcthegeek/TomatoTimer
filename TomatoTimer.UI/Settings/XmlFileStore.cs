@@ -13,13 +13,11 @@ namespace TomatoTimer.UI.Settings
 
         public void SaveXml(string xml)
         {
-            // TODO: Review to See How Exceptions Cause Things to Go Boom Here.
             throw new NotImplementedException();
         }
 
         public string LoadXml(string filePath)
         {
-            // TODO: Review to See How Exceptions Cause Things to Go Boom Here.
             return File.ReadAllText(filePath);
         }
     }

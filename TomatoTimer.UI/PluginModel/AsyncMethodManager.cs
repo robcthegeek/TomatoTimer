@@ -70,9 +70,6 @@ namespace TomatoTimer.UI.PluginModel
 
         Dictionary<string, KeyValuePair<IAsyncMethod, ExecutionContext>> RunningMethods { get; set; }
 
-        /// <summary>
-        /// TODO: This Needs to be Pushed to an IoC Container!
-        /// </summary>
         public IAsyncMethod AsyncMethod { get; set; }
 
         public AsyncMethodManager()
