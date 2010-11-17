@@ -1,5 +1,4 @@
 using System;
-using System.Windows.Threading;
 
 namespace TomatoTimer.Core
 {
@@ -11,7 +10,7 @@ namespace TomatoTimer.Core
         private DateTime startTime;
         private DateTime stopTime;
         private DateTime stoppedTime;
-        public TimeSpan Interval = new TimeSpan(0, 0, 0, 1);
+        private TimeSpan interval = new TimeSpan(0, 0, 0, 1);
 
         #region Events
         public event EventHandler<TimerStartedEventArgs> TimerStarted;
@@ -57,7 +56,7 @@ namespace TomatoTimer.Core
 
             this.timer = timer;
             this.time = timeProvider;
-            this.timer.Interval = Interval;
+            this.timer.Interval = interval;
             this.timer.Tick += timer_Tick;
 
             ResetTimes();
@@ -75,11 +74,9 @@ namespace TomatoTimer.Core
         {
             get
             {
-                if (!timer.IsEnabled)
-                    return TimeSpan.Zero;
-                
-                // TODO (RC): Remove DateTime.Now From Here
-                return DateTime.Now.TimeSpanBetween(stopTime);
+                return timer.IsEnabled ?
+                    time.Now.TimeSpanBetween(stopTime) :
+                    TimeSpan.Zero;
             }
         }
 
@@ -104,11 +101,9 @@ namespace TomatoTimer.Core
                     "Timer component is already running. Please Stop before calling Start again.");
 
             startTime = time.Now;
-
-            // TODO (RC): Remove DateTime.Now From Here
-            stopTime = DateTime.Now.Add(timeSpan);            
+            stopTime = time.Now.Add(timeSpan);            
             timer.Start();
-            timer.Interval = Interval;
+            timer.Interval = interval;
             OnTimerStarted();
         }
 

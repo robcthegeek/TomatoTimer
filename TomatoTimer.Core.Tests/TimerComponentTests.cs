@@ -188,5 +188,31 @@ namespace TomatoTimer.Core.Tests.Timer_Component
             Assert.Equal(expectedFirstElapsed, firstElapsed);
             Assert.Equal(expectedSecondElapsed, secondElapsed);
         }
+
+        [Fact]
+        public void Remaining_Stopped_ReturnsTimeSpanZero()
+        {
+            var component = Create.TimerComponent.ThatWorks();
+            Assert.Equal(TimeSpan.Zero, component.Remaining);
+        }
+
+        [Fact]
+        public void Remaining_TimerRunning_ReturnsTimeRemaining()
+        {
+            var startTime = new DateTime(2010, 11, 16, 7, 10, 0);
+            var remainingTime = new DateTime(2010, 11, 16, 7, 15, 0);
+            var expectedRemaining = 5.Minutes();
+            var timeProvider = Create.TimeProvider.MockThatReturns(startTime);
+            var component = Create.TimerComponent.With(Create.Timer.ThatWorks(), timeProvider.Object);
+
+            component.Start(10.Minutes());
+            timeProvider.Setup(x => x.Now).Returns(remainingTime);
+            var actualRemaining = component.Remaining;
+
+            Assert.Equal(expectedRemaining, actualRemaining);
+        }
+
+        // TODO (RC): Test for Stop When Internal Timer Ticks and Time > Start Time + TimeSpan Given to TimerComponent
+        // TODO (RC): Tick Event Raised
     }
 }
