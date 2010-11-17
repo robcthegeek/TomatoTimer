@@ -29,7 +29,7 @@ namespace TomatoTimer.UI.PluginModel.Default
             mainWindow = Main.GetInstance();
             notify = new NotifyIconComponent(mainWindow)
                          {
-                             IconTitle = Current.Application.AppTitle
+                             IconTitle = Constants.APP_TITLE
                          };
             notify.TrayIconDoubleClicked += notify_TrayIconDoubleClicked;
             notify.TrayIconMouseMoved += notify_TrayIconMouseMoved;

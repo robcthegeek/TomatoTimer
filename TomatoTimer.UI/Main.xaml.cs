@@ -58,7 +58,7 @@ namespace TomatoTimer.UI
         private void SetWindowTitle()
         {
             var version = Assembly.GetExecutingAssembly().Version();
-            var appTitle = Current.Application.AppTitle;
+            var appTitle = Constants.APP_TITLE;
             Title = string.Format("{0} (v{1})", appTitle, version);
         }
 
