@@ -93,7 +93,6 @@
     <Compile Include="UI\Plugins\AsyncMethodMangerTest_When_Not_Abortable.cs" />
     <Compile Include="UI\Plugins\DummyPlugin.cs" />
     <Compile Include="UI\Plugins\PluginsCollectionTests.cs" />
-    <Compile Include="UI\Settings\AppSettingsTests.cs" />
     <Compile Include="UI\ColorExtensionsTests.cs" />
     <Compile Include="UI\Settings\DefaultUserSettingsXml.cs" />
     <Compile Include="UI\Settings\SettingsFileTests.cs" />
