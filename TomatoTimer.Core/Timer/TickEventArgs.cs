@@ -7,7 +7,7 @@ namespace TomatoTimer.Core
         public TimeSpan TimeElapsed { get; set; }
         public TimeSpan TimeRemaining { get; set; }
 
-        public TickEventArgs(ITimer timer, TimeSpan timeElapsed, TimeSpan timeRemaining) : base(timer)
+        public TickEventArgs(ITomatoTimer timer, TimeSpan timeElapsed, TimeSpan timeRemaining) : base(timer)
         {
             TimeElapsed = timeElapsed;
             TimeRemaining = timeRemaining;

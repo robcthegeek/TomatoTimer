@@ -7,9 +7,9 @@ namespace TomatoTimer.Core
     /// </summary>
     public class TimerEventArgs : EventArgs
     {
-        public ITimer Timer { get; private set; }
+        public ITomatoTimer Timer { get; private set; }
 
-        public TimerEventArgs(ITimer timer)
+        public TimerEventArgs(ITomatoTimer timer)
         {
             Timer = timer;
         }

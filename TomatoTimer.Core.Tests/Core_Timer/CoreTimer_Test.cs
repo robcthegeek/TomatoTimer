@@ -9,7 +9,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
     /// </summary>
     public abstract class CoreTimer_Tests
     {
-        protected readonly ITimer timer;
+        protected readonly ITomatoTimer timer;
         protected readonly Mock<ITimerComponent> timerComponent;
         protected readonly TomatoEventMonitor monitor;
 

@@ -2,7 +2,7 @@
 
 namespace TomatoTimer.Core
 {
-    public interface ITimer
+    public interface ITomatoTimer
     {
         event EventHandler<TimerEventArgs> TomatoStarted;
         event EventHandler<TimerEventArgs> TomatoEnded;

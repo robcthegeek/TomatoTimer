@@ -73,10 +73,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyExtensions.cs" />
+    <Compile Include="Helpers\TimeSpanHelpers.cs" />
+    <Compile Include="ICurrentTimeProvider.cs" />
+    <Compile Include="Timer.cs" />
+    <Compile Include="ITimer.cs" />
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="Timer\TickEventArgs.cs" />
     <Compile Include="Timer\States\InterruptedState.cs" />
-    <Compile Include="Timer\ITimer.cs" />
+    <Compile Include="Timer\ITomatoTimer.cs" />
     <Compile Include="ITimerComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Timer\States\SetBreakRunningState.cs" />

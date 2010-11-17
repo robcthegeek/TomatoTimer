@@ -74,6 +74,10 @@
   <ItemGroup>
     <Compile Include="AssemblyExtensionsTests.cs" />
     <Compile Include="DateTimeExtensionsTests.cs" />
+    <Compile Include="Factories\Create.cs" />
+    <Compile Include="Factories\CurrentTimeProviderFactory.cs" />
+    <Compile Include="Factories\TimerComponentFactory.cs" />
+    <Compile Include="Factories\TimerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestConstants.cs" />
     <Compile Include="TimerComponentTests.cs" />

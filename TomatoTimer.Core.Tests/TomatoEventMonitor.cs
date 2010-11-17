@@ -6,10 +6,10 @@ namespace TomatoTimer.Core.Tests
     /// <summary>
     /// Class for Tracking Events Raised from an ITimer.
     /// </summary>
-    /// <seealso cref="ITimer"/>
+    /// <seealso cref="ITomatoTimer"/>
     public class TomatoEventMonitor
     {
-        private readonly ITimer timer;
+        private readonly ITomatoTimer timer;
         public bool TomatoStartedEventRaised { get; private set; }
         public bool TomatoEndedEventRaised { get; private set; }
         public bool BreakStartedEventRaised { get; private set; }
@@ -23,7 +23,7 @@ namespace TomatoTimer.Core.Tests
 
         public StateChangeFailedEventArgs StateChangeFailedEventArgs { get; private set; }
 
-        public TomatoEventMonitor(ITimer timerToMonitor)
+        public TomatoEventMonitor(ITomatoTimer timerToMonitor)
         {
             timer = timerToMonitor;
             

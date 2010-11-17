@@ -123,7 +123,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         [Fact]
         public void TickArgs_Timer_Is_Not_Null()
         {
-            ITimer actual = null;
+            ITomatoTimer actual = null;
             timer.Tick += (sender, args) => actual = args.Timer;
             timerComponent.Raise(tc => tc.Tick += null, this, new TickEventArgs(null, TimeSpan.MinValue, TimeSpan.MinValue));
             Assert.NotNull(actual);
@@ -132,7 +132,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         [Fact]
         public void TickArgsTimer_Is_TimerInstance()
         {
-            ITimer actual = null;
+            ITomatoTimer actual = null;
             timer.Tick += (sender, args) => actual = args.Timer;
             timerComponent.Raise(tc => tc.Tick += null, this, new TickEventArgs(null, TimeSpan.MinValue, TimeSpan.MinValue));
             Assert.Equal(actual, timer);

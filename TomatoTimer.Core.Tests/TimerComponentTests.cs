@@ -2,6 +2,8 @@
 using Xunit;
 using System;
 using System.Threading;
+using TomatoTimer.Core.Tests.Factories;
+using TomatoTimer.Core.Helpers;
 
 namespace TomatoTimer.Core.Tests.Timer_Component
 {
@@ -9,31 +11,102 @@ namespace TomatoTimer.Core.Tests.Timer_Component
     {
         static TimeSpan TimerLength { get { return new TimeSpan(0, 0, 0, 42); } }
 
-        protected ITimerComponent timerComponent;
-
-        public TimerComponentTests()
+        [Fact]
+        public void Ctor_NullTimer_ThrowsArgumentNullException()
         {
-            timerComponent = new TimerComponent();
-            timerComponent.Start(TimerLength);
+            var ex = Assert.Throws<ArgumentNullException>(() =>
+                new TimerComponent(null, Create.TimeProvider.ThatWorks()));
+            Assert.Contains("Timer Implementation is Required", ex.Message);
+            Assert.Equal("timer", ex.ParamName);
+        }
+
+        [Fact]
+        public void Ctor_NullCurrentTimeProvider_ThrowsArgumentNullException()
+        {
+            var ex = Assert.Throws<ArgumentNullException>(() =>
+                new TimerComponent(Create.Timer.ThatWorks(), null));
+            Assert.Contains("CurrentTimeProvider Implementation is Required", ex.Message);
+            Assert.Equal("timeProvider", ex.ParamName);
         }
 
         [Fact]
         public void Remaining_OnCtor_TimeSpanZero()
         {
-            var component = new TimerComponent();
+            var component = Create.TimerComponent.ThatWorks();
             Assert.Equal(TimeSpan.Zero, component.Remaining);
         }
 
         [Fact]
         public void Elapsed_OnCtor_TimeSpanZero()
         {
-            var component = new TimerComponent();
+            var component = Create.TimerComponent.ThatWorks();
             Assert.Equal(TimeSpan.Zero, component.Elapsed);
         }
 
-        // TODO (RC): Start Raises Started Event
-        // TODO (RC): Start 2nd Time Throws InvalidOperationException
-        // TODO (RC): Start w/ TimeSpan.Zero Throws ArgumentException
+        [Fact]
+        public void Start_TimeSpanIsZero_ThrowsArgumentOutOfRangeException()
+        {
+            var component = Create.TimerComponent.ThatWorks();
+            var ex = Assert.Throws<ArgumentOutOfRangeException>(() =>
+                component.Start(TimeSpan.Zero));
+            Assert.Contains("Invalid TimeSpan - Please use a value greater than TimeSpan.Zero, less than TimeSpan.MaxValue which when added to the current time does not exceed DateTime.MaxValue", ex.Message);
+            Assert.Equal("timeSpan", ex.ParamName);
+        }
+
+        [Fact]
+        public void Start_TimeSpanIsMinValue_ThrowsArgumentOutOfRangeException()
+        {
+            var component = Create.TimerComponent.ThatWorks();
+            var ex = Assert.Throws<ArgumentOutOfRangeException>(() =>
+                component.Start(TimeSpan.MinValue));
+            Assert.Contains("Invalid TimeSpan - Please use a value greater than TimeSpan.Zero, less than TimeSpan.MaxValue which when added to the current time does not exceed DateTime.MaxValue", ex.Message);
+            Assert.Equal("timeSpan", ex.ParamName);
+        }
+
+        [Fact]
+        public void Start_TimeSpanIsMaxValue_ThrowsArgumentOutOfRangeException()
+        {
+            var component = Create.TimerComponent.ThatWorks();
+            var ex = Assert.Throws<ArgumentOutOfRangeException>(() =>
+                component.Start(TimeSpan.MaxValue));
+            Assert.Contains("Invalid TimeSpan - Please use a value greater than TimeSpan.Zero, less than TimeSpan.MaxValue which when added to the current time does not exceed DateTime.MaxValue", ex.Message);
+            Assert.Equal("timeSpan", ex.ParamName);
+        }
+
+        [Fact]
+        public void Start_TimeSpanGreaterThanMaxDateTimeSubtractNow_ThrowsArgumentOutOfRangeException()
+        {
+            var currentTime = new DateTime(2010, 11, 16, 18, 51, 0);
+            var maxMinusCurrent = DateTime.MaxValue.Subtract(currentTime);
+            var tooBigTimeSpan = maxMinusCurrent.Add(10.Minutes());
+            var time = Create.TimeProvider.ThatReturns(currentTime);
+            var component = Create.TimerComponent.With(Create.Timer.ThatWorks(), time);
+            var ex = Assert.Throws<ArgumentOutOfRangeException>(() =>
+                component.Start(tooBigTimeSpan));
+            Assert.Contains("Invalid TimeSpan - Please use a value greater than TimeSpan.Zero, less than TimeSpan.MaxValue which when added to the current time does not exceed DateTime.MaxValue", ex.Message);
+            Assert.Equal("timeSpan", ex.ParamName);
+        }
+
+        [Fact]
+        public void Start_IsStopped_RaisesTimerStartedEvent()
+        {
+            var raised = false;
+            var component = Create.TimerComponent.ThatWorks();
+            component.TimerStarted += (sender, args) => raised = true;
+            component.Start(5.Minutes());
+            Assert.True(raised);
+        }
+
+        [Fact]
+        public void Start_WhenAlreadyStarted_ThrowsInvalidOperationException()
+        {
+            var component = Create.TimerComponent.ThatWorks();
+            component.Start(5.Minutes());
+
+            var ex = Assert.Throws<InvalidOperationException>(() => component.Start(2.Minutes()));
+            Assert.Contains("Timer component is already running. Please Stop before calling Start again.", ex.Message);
+        }
+
         // TODO (RC): Stop without Start Throws InvalidOperationException
         // TODO (RC): Stop w/ Start Raises Stopped Event
         // TODO (RC): Elapsed After Start and Stop is Run Time
@@ -41,93 +114,5 @@ namespace TomatoTimer.Core.Tests.Timer_Component
         // TODO (RC): Add TimeStarted to TimerComponent.Started EventArgs
         // TODO (RC): Add Elapsed to TimerComponent.Stopped EventArgs
         // TODO (RC): Add TimeStopped to TimerComponent.Stopped EventArgs
-
-        // TODO (RC): Delete Everything Below this Comment!
-
-        [Fact]
-        public void Elapsed_Increases_As_Time_Passes()
-        {
-            var before = timerComponent.Elapsed;
-            Thread.Sleep(10);
-            var after = timerComponent.Elapsed;
-            Assert.True(after > before,
-                        string.Format("Elapsed Time Not Incremented Following Start of TimerComponent. Before: {0} After {1}", before, after));
-        }
-
-        [Fact]
-        public void Remaining_Decreases_As_Time_Passes()
-        {
-            var before = timerComponent.Remaining;
-            Thread.Sleep(10);
-            var after = timerComponent.Remaining;
-            Assert.True(after < before,
-                        string.Format("Remaining Time Not Decreased Following Start of TimerComponent. Before: {0} After {1}", before, after));
-        }
-
-        [Fact]
-        public void Remaining_Returns_Zero_Once_Stopped()
-        {
-            Thread.Sleep(10);
-            timerComponent.Stop();
-            Assert.Equal(TimeSpan.Zero, timerComponent.Remaining);
-        }
-
-        [Fact]
-        public void Elapsed_Is_Not_Zero_Once_Stopped()
-        {
-            Thread.Sleep(10);
-            timerComponent.Stop();
-            Assert.NotEqual(TimeSpan.Zero, timerComponent.Elapsed);
-        }
-
-        [Fact]
-        public void Elapsed_Remains_Static_Once_Stopped()
-        {
-            Thread.Sleep(10);
-            timerComponent.Stop();
-            var expected = timerComponent.Elapsed;
-            Thread.Sleep(10);
-            var actual = timerComponent.Elapsed;
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Elapsed_Is_Reset()
-        {
-            Thread.Sleep(20);
-            timerComponent.Stop();
-            var existingElapsed = timerComponent.Elapsed;
-            timerComponent.Start(TimerLength);
-            Thread.Sleep(10);
-            timerComponent.Stop();
-            var actual = timerComponent.Elapsed;
-            Assert.True(actual < existingElapsed,
-                        string.Format("Elapsed Does Not Appear to be Reset Following Start/Stop. Actual/Existing Elapsed: {0}/{1}", actual, existingElapsed));
-        }
-
-        [Fact]
-        public void Elapsed_Is_Postive()
-        {
-            Thread.Sleep(5);
-            Assert.True(timerComponent.Elapsed > TimeSpan.Zero,
-                        "Elapsed is Less Than TimeSpan.Zero (Should be Greater When Running)");
-        }
-
-        [Fact]
-        public void Elapsed_Is_Postive_When_Stopped()
-        {
-            Thread.Sleep(5);
-            timerComponent.Stop();
-            Assert.True(timerComponent.Elapsed > TimeSpan.Zero,
-                        "Elapsed is Less Than TimeSpan.Zero (Should be Greater Following a Stop After Running)");
-        }
-
-        [Fact]
-        public void Remaining_Is_Postive()
-        {
-            Thread.Sleep(5);
-            Assert.True(timerComponent.Remaining > TimeSpan.Zero,
-                        "Remaining is Less Than TimeSpan.Zero (Should be Greater When Running)");
-        }
     }
 }

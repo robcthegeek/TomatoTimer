@@ -2,7 +2,7 @@ using System;
 
 namespace TomatoTimer.Core
 {
-    public partial class CoreTimer : ITimer
+    public partial class CoreTimer : ITomatoTimer
     {
         private ITimerComponent TimerComponent { get; set; }
         

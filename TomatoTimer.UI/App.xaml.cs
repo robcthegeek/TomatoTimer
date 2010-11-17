@@ -28,7 +28,7 @@ namespace TomatoTimer.UI
             base.OnStartup(e);
             ShutdownMode = System.Windows.ShutdownMode.OnMainWindowClose;
 
-            var timer = container.Resolve<ITimer>();
+            var timer = container.Resolve<ITomatoTimer>();
 
             mainWindow = new Main(timer);
             AttemptedNewInstance += (sender, args) => mainWindow.PopupWindow();
@@ -45,7 +45,7 @@ namespace TomatoTimer.UI
             return builder;
         }
 
-        private static ITimer CreateTimerFromSettings()
+        private static ITomatoTimer CreateTimerFromSettings()
         {
             // TODO: This Configuration Should be Managed By AppController
             // Load Timings from Configuration.
@@ -53,7 +53,8 @@ namespace TomatoTimer.UI
             var breakLen = Settings.Current.User.BreakTime;
             var setBreakLen = Settings.Current.User.SetBreakTime;
 
-            var timer = new CoreTimer(new TimerComponent())
+            var dispatcherTimer = new Timer();
+            var timer = new CoreTimer(new TimerComponent(dispatcherTimer, dispatcherTimer))
             {
                 TomatoTimeSpan = new TimeSpan(0, 0, tomatoLen, 0),
                 BreakTimeSpan = new TimeSpan(0, 0, breakLen, 0),

@@ -17,7 +17,7 @@ namespace TomatoTimer.UI
     /// </summary>
     public partial class Main : Window
     {
-        private readonly ITimer timer;
+        private readonly ITomatoTimer timer;
         // TODO: This is a real hack to allow the MiniTimer/NotifyIcon Plugins Interim Access to Running Timer Core.
         private static Main instance;
         public static Main GetInstance()
@@ -27,13 +27,13 @@ namespace TomatoTimer.UI
 
         private HotKeys hotkeys;
 
-        public ITimer Timer { get; private set; }
+        public ITomatoTimer Timer { get; private set; }
 
         [ImportMany(typeof(TimerEventPlugin))]
         List<TimerEventPlugin> TimerEventPluginImports { get; set; }
         AsyncMethodManager<TimerEventPlugin> ExecutingTimerEventPlugins { get; set; }
 
-        public Main(ITimer timer)
+        public Main(ITomatoTimer timer)
         {
             Timer = timer;
             instance = this;

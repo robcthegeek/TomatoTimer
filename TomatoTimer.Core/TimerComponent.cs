@@ -7,7 +7,9 @@ namespace TomatoTimer.Core
     {
         // TODO (RC): Extract Dependency on DispatcherTimer
 
-        private readonly DispatcherTimer timer;
+        private readonly ITimer timer;
+        private readonly ICurrentTimeProvider time;
+
         private DateTime startTime;
         private DateTime stopTime;
         private DateTime stoppedTime;
@@ -42,11 +44,20 @@ namespace TomatoTimer.Core
         }
         #endregion
 
-        public TimerComponent()
+        public TimerComponent(ITimer timer, ICurrentTimeProvider timeProvider)
         {
-            timer = new DispatcherTimer(DispatcherPriority.Normal);
-            timer.Interval = Interval;
-            timer.Tick += timer_Tick;
+            if (timer == null)
+                throw new ArgumentNullException(
+                    "timer", "Timer Implementation is Required");
+
+            if (timeProvider == null)
+                throw new ArgumentNullException(
+                    "timeProvider", "CurrentTimeProvider Implementation is Required");
+
+            this.timer = timer;
+            this.time = timeProvider;
+            this.timer.Interval = Interval;
+            this.timer.Tick += timer_Tick;
 
             ResetTimes();
         }
@@ -81,11 +92,30 @@ namespace TomatoTimer.Core
 
         public void Start(TimeSpan timeSpan)
         {
+            if (TimeSpanInvalid(timeSpan))
+                throw new ArgumentOutOfRangeException(
+                    "timeSpan", "Invalid TimeSpan - Please use a value greater than TimeSpan.Zero, less than TimeSpan.MaxValue which when added to the current time does not exceed DateTime.MaxValue");
+
+            if (timer.IsEnabled)
+                throw new InvalidOperationException(
+                    "Timer component is already running. Please Stop before calling Start again.");
+
             startTime = DateTime.Now;
             stopTime = DateTime.Now.Add(timeSpan);            
             timer.Start();
             timer.Interval = Interval;
             OnTimerStarted();
+        }
+
+        private bool TimeSpanInvalid(TimeSpan value)
+        {
+            if (value == TimeSpan.Zero)
+                return true;
+            if (!(value > TimeSpan.MinValue && value < TimeSpan.MaxValue))
+                return true;
+            if (DateTime.MaxValue.Subtract(value) < time.Now)
+                return true;
+            return false;
         }
 
         public void Stop()
