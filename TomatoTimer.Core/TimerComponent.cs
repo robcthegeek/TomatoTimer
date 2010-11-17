@@ -5,8 +5,6 @@ namespace TomatoTimer.Core
 {
     public class TimerComponent : ITimerComponent
     {
-        // TODO (RC): Extract Dependency on DispatcherTimer
-
         private readonly ITimer timer;
         private readonly ICurrentTimeProvider time;
 
@@ -65,6 +63,7 @@ namespace TomatoTimer.Core
         void timer_Tick(object sender, EventArgs e)
         {
             OnTick();
+            // TODO (RC): Remove DateTime.Now From Here
             if (DateTime.Now >= stopTime)
                 Stop();
         }
@@ -75,7 +74,8 @@ namespace TomatoTimer.Core
             {
                 if (!timer.IsEnabled)
                     return TimeSpan.Zero;
-
+                
+                // TODO (RC): Remove DateTime.Now From Here
                 return DateTime.Now.TimeSpanBetween(stopTime);
             }
         }
@@ -101,6 +101,8 @@ namespace TomatoTimer.Core
                     "Timer component is already running. Please Stop before calling Start again.");
 
             startTime = time.Now;
+
+            // TODO (RC): Remove DateTime.Now From Here
             stopTime = DateTime.Now.Add(timeSpan);            
             timer.Start();
             timer.Interval = Interval;
@@ -131,9 +133,6 @@ namespace TomatoTimer.Core
             OnTimerStopped();
         }
 
-        /// <summary>
-        /// Resets the 'nextTickTime' and 'stopTime' Variables to DateTime.MinValue.
-        /// </summary>
         private void ResetTimes()
         {
             stopTime = DateTime.MinValue;
