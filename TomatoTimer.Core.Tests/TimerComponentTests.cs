@@ -7,7 +7,7 @@ namespace TomatoTimer.Core.Tests.Timer_Component
 {
     public class TimerComponentTests
     {
-        static TimeSpan TimerLength { get { return new TimeSpan(0, 0, 0, 42); } }
+        static TimeSpan TimerLength { get { return 42.Seconds(); } }
 
         [Fact]
         public void Ctor_NullTimer_ThrowsArgumentNullException()
@@ -74,7 +74,7 @@ namespace TomatoTimer.Core.Tests.Timer_Component
         [Fact]
         public void Start_TimeSpanGreaterThanMaxDateTimeSubtractNow_ThrowsArgumentOutOfRangeException()
         {
-            var currentTime = new DateTime(2010, 11, 16, 18, 51, 0);
+            var currentTime = DateTime.Now;
             var maxMinusCurrent = DateTime.MaxValue.Subtract(currentTime);
             var tooBigTimeSpan = maxMinusCurrent.Add(10.Minutes());
             var time = Create.TimeProvider.ThatReturns(currentTime);
@@ -90,7 +90,7 @@ namespace TomatoTimer.Core.Tests.Timer_Component
         {
             var raised = false;
             var raisedTimeStarted = DateTime.MinValue;
-            var expectedTimeStarted = new DateTime(2010, 11, 17, 6, 34, 0);
+            var expectedTimeStarted = DateTime.Now;
             var timeProvider = Create.TimeProvider.ThatReturns(expectedTimeStarted);
             var component = Create.TimerComponent.With(Create.Timer.ThatWorks(), timeProvider);
             component.TimerStarted += (sender, args) =>
@@ -128,8 +128,8 @@ namespace TomatoTimer.Core.Tests.Timer_Component
         public void Stop_AfterStart_RaisesTimerStoppedEvent()
         {
             var raised = false;
-            var timeStarted = new DateTime(2010, 11, 16, 6, 50, 0);
-            var timeStopped = new DateTime(2010, 11, 16, 6, 55, 0);
+            var timeStarted = DateTime.Now;
+            var timeStopped = timeStarted.Add(5.Minutes());
             var expectedElapsed = 5.Minutes();
             var raisedTimeStopped = DateTime.MinValue;
             var raisedElapsed = TimeSpan.Zero;
@@ -155,9 +155,9 @@ namespace TomatoTimer.Core.Tests.Timer_Component
         public void Elapsed_AfterStartAndStop_IsRunTimeNotCurrentTime()
         {
             // Ensures the "Current Time" is Not Queried After Stopping
-            var startTime = new DateTime(2010, 11, 17, 6, 0, 0);
-            var stopTime = new DateTime(2010, 11, 17, 6, 5, 0);
-            var timeAfterStop = new DateTime(2010, 11, 17, 7, 0, 0);
+            var startTime = DateTime.Now;
+            var stopTime = startTime.Add(5.Minutes());
+            var timeAfterStop = stopTime.Add(2.Minutes());
             var expectedElapsed = 5.Minutes();
             var time = Create.TimeProvider.MockThatReturns(startTime);
             var component = Create.TimerComponent.With(Create.Timer.ThatWorks(), time.Object);
@@ -173,10 +173,10 @@ namespace TomatoTimer.Core.Tests.Timer_Component
         public void Elapsed_AfterStart_IsRunningTime()
         {
             // Ensures the "Current Time" is Queried While Running
-            var startTime = new DateTime(2010, 11, 17, 6, 0, 0);
-            var firstCheck = new DateTime(2010, 11, 17, 6, 5, 0);
+            var startTime = DateTime.Now;
+            var firstCheck = startTime.Add(5.Minutes());
             var expectedFirstElapsed = 5.Minutes();
-            var secondCheck = new DateTime(2010, 11, 17, 6, 10, 0);
+            var secondCheck = startTime.Add(10.Minutes());
             var expectedSecondElapsed = 10.Minutes();
             var time = Create.TimeProvider.MockThatReturns(startTime);
             var component = Create.TimerComponent.With(Create.Timer.ThatWorks(), time.Object);
@@ -199,8 +199,8 @@ namespace TomatoTimer.Core.Tests.Timer_Component
         [Fact]
         public void Remaining_TimerRunning_ReturnsTimeRemaining()
         {
-            var startTime = new DateTime(2010, 11, 16, 7, 10, 0);
-            var remainingTime = new DateTime(2010, 11, 16, 7, 15, 0);
+            var startTime = DateTime.Now;
+            var remainingTime = startTime.Add(5.Minutes());
             var expectedRemaining = 5.Minutes();
             var timeProvider = Create.TimeProvider.MockThatReturns(startTime);
             var component = Create.TimerComponent.With(Create.Timer.ThatWorks(), timeProvider.Object);
