@@ -107,8 +107,26 @@ namespace TomatoTimer.Core.Tests.Timer_Component
             Assert.Contains("Timer component is already running. Please Stop before calling Start again.", ex.Message);
         }
 
-        // TODO (RC): Stop without Start Throws InvalidOperationException
-        // TODO (RC): Stop w/ Start Raises Stopped Event
+        [Fact]
+        public void Start_WhenNotStarted_ThrowsInvalidOperationException()
+        {
+            var component = Create.TimerComponent.ThatWorks();
+
+            var ex = Assert.Throws<InvalidOperationException>(() => component.Stop());
+            Assert.Contains("Timer component is not running. Please Start before calling Stop.", ex.Message);
+        }
+
+        [Fact]
+        public void Stop_AfterStart_RaisesTimerStoppedEvent()
+        {
+            var raised = false;
+            var component = Create.TimerComponent.ThatWorks();
+            component.TimerStopped += (sender, args) => raised = true;
+            component.Start(5.Minutes());
+            component.Stop();
+            Assert.True(raised);
+        }
+
         // TODO (RC): Elapsed After Start and Stop is Run Time
         // TODO (RC): Elapsed While Running Continuously Re-Calcs Running Time
         // TODO (RC): Add TimeStarted to TimerComponent.Started EventArgs

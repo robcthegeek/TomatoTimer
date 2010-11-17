@@ -120,6 +120,10 @@ namespace TomatoTimer.Core
 
         public void Stop()
         {
+            if (!timer.IsEnabled)
+                throw new InvalidOperationException(
+                    "Timer component is not running. Please Start before calling Stop.");
+
             timer.Interval = TimeSpan.Zero;
             ResetTimes();
             timer.Stop();
