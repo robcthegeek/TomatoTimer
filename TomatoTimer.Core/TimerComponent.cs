@@ -1,4 +1,5 @@
 using System;
+using TomatoTimer.Core.Helpers;
 
 namespace TomatoTimer.Core
 {
@@ -10,7 +11,6 @@ namespace TomatoTimer.Core
         private DateTime startTime;
         private DateTime stopTime;
         private DateTime stoppedTime;
-        private TimeSpan interval = new TimeSpan(0, 0, 0, 1);
 
         #region Events
         public event EventHandler<TimerStartedEventArgs> TimerStarted;
@@ -56,17 +56,14 @@ namespace TomatoTimer.Core
 
             this.timer = timer;
             this.time = timeProvider;
-            this.timer.Interval = interval;
+            this.timer.Interval = 1.Seconds();
             this.timer.Tick += timer_Tick;
-
-            ResetTimes();
         }
 
         void timer_Tick(object sender, EventArgs e)
         {
             OnTick();
-            // TODO (RC): Remove DateTime.Now From Here
-            if (DateTime.Now >= stopTime)
+            if (time.Now >= stopTime)
                 Stop();
         }
 
@@ -103,7 +100,6 @@ namespace TomatoTimer.Core
             startTime = time.Now;
             stopTime = time.Now.Add(timeSpan);            
             timer.Start();
-            timer.Interval = interval;
             OnTimerStarted();
         }
 
@@ -125,15 +121,10 @@ namespace TomatoTimer.Core
                     "Timer component is not running. Please Start before calling Stop.");
 
             timer.Interval = TimeSpan.Zero;
-            ResetTimes();
             timer.Stop();
+            stopTime = DateTime.MinValue;
             stoppedTime = time.Now;
             OnTimerStopped();
-        }
-
-        private void ResetTimes()
-        {
-            stopTime = DateTime.MinValue;
         }
     }
 }

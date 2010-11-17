@@ -28,6 +28,16 @@ namespace TomatoTimer.Core.Tests.Timer_Component
         }
 
         [Fact]
+        public void Ctor_ValidDependencies_SetsInternalTimerIntervalToOneSecond()
+        {
+            // Required Since We Want Constant "Pulse" from Timer.
+            var timer = Create.Timer.MockThatWorks();
+            timer.SetupSet(x => x.Interval = 1.Seconds()).Verifiable();
+            var component = Create.TimerComponent.With(timer.Object, Create.TimeProvider.ThatWorks());
+            timer.Verify();
+        }
+
+        [Fact]
         public void Remaining_OnCtor_TimeSpanZero()
         {
             var component = Create.TimerComponent.ThatWorks();
@@ -212,7 +222,37 @@ namespace TomatoTimer.Core.Tests.Timer_Component
             Assert.Equal(expectedRemaining, actualRemaining);
         }
 
-        // TODO (RC): Test for Stop When Internal Timer Ticks and Time > Start Time + TimeSpan Given to TimerComponent
-        // TODO (RC): Tick Event Raised
+        [Fact]
+        public void TimerStoppedEvent_TimeHasPassedTimeSpan_IsRaised()
+        {
+            var startTime = DateTime.Now;
+            var timeProvider = Create.TimeProvider.MockThatReturns(startTime);
+            var timer = Create.Timer.MockThatWorks();
+            var component = Create.TimerComponent.With(timer.Object, timeProvider.Object);
+            var raised = false;
+            component.TimerStopped += (sender, args) => raised = true;
+            
+            component.Start(5.Minutes());
+            timeProvider.Setup(x => x.Now).Returns(startTime.Add(10.Minutes()));
+            timer.Raise(x => x.Tick += null, (EventArgs)null);
+
+            Assert.True(raised);
+        }
+
+        [Fact]
+        public void TimerTickEvent_TimeHasReachedTimeSpan_IsRaised()
+        {
+            var startTime = DateTime.Now;
+            var timeProvider = Create.TimeProvider.MockThatReturns(startTime);
+            var timer = Create.Timer.MockThatWorks();
+            var component = Create.TimerComponent.With(timer.Object, timeProvider.Object);
+            var raised = false;
+            component.Tick += (sender, args) => raised = true;
+
+            component.Start(5.Minutes());
+            timer.Raise(x => x.Tick += null, (EventArgs)null);
+
+            Assert.True(raised);
+        }
     }
 }

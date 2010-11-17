@@ -10,10 +10,15 @@ namespace TomatoTimer.Core.Tests.Factories
     {
         public ITimer ThatWorks()
         {
+            return MockThatWorks().Object;
+        }
+
+        public Mock<ITimer> MockThatWorks()
+        {
             var mock = new Mock<ITimer>();
             mock.Setup(x => x.Start()).Callback(() => mock.Setup(x => x.IsEnabled).Returns(true));
             mock.Setup(x => x.Stop()).Callback(() => mock.Setup(x => x.IsEnabled).Returns(false));
-            return mock.Object;
+            return mock;
         }
     }
 }
