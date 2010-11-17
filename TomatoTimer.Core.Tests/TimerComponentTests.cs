@@ -130,7 +130,7 @@ namespace TomatoTimer.Core.Tests.Timer_Component
             var raised = false;
             var timeStarted = new DateTime(2010, 11, 16, 6, 50, 0);
             var timeStopped = new DateTime(2010, 11, 16, 6, 55, 0);
-            var expectedElapsed = new TimeSpan(0, 5, 0);
+            var expectedElapsed = 5.Minutes();
             var raisedTimeStopped = DateTime.MinValue;
             var raisedElapsed = TimeSpan.Zero;
             var timeProvider = Create.TimeProvider.MockThatReturns(timeStarted);
@@ -158,7 +158,7 @@ namespace TomatoTimer.Core.Tests.Timer_Component
             var startTime = new DateTime(2010, 11, 17, 6, 0, 0);
             var stopTime = new DateTime(2010, 11, 17, 6, 5, 0);
             var timeAfterStop = new DateTime(2010, 11, 17, 7, 0, 0);
-            var expectedElapsed = new TimeSpan(0, 5, 0);
+            var expectedElapsed = 5.Minutes();
             var time = Create.TimeProvider.MockThatReturns(startTime);
             var component = Create.TimerComponent.With(Create.Timer.ThatWorks(), time.Object);
             component.Start(5.Minutes());
@@ -175,9 +175,9 @@ namespace TomatoTimer.Core.Tests.Timer_Component
             // Ensures the "Current Time" is Queried While Running
             var startTime = new DateTime(2010, 11, 17, 6, 0, 0);
             var firstCheck = new DateTime(2010, 11, 17, 6, 5, 0);
-            var expectedFirstElapsed = new TimeSpan(0, 5, 0);
+            var expectedFirstElapsed = 5.Minutes();
             var secondCheck = new DateTime(2010, 11, 17, 6, 10, 0);
-            var expectedSecondElapsed = new TimeSpan(0, 10, 0);
+            var expectedSecondElapsed = 10.Minutes();
             var time = Create.TimeProvider.MockThatReturns(startTime);
             var component = Create.TimerComponent.With(Create.Timer.ThatWorks(), time.Object);
             component.Start(5.Minutes());
