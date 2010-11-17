@@ -145,7 +145,26 @@ namespace TomatoTimer.Core.Tests.Timer_Component
             Assert.Equal(expectedElapsed, elapsed);
         }
 
-        // TODO (RC): Elapsed While Running Continuously Re-Calcs Running Time
+        [Fact]
+        public void Elapsed_AfterStart_IsRunningTime()
+        {
+            // Ensures the "Current Time" is Queried While Running
+            var startTime = new DateTime(2010, 11, 17, 6, 0, 0);
+            var firstCheck = new DateTime(2010, 11, 17, 6, 5, 0);
+            var expectedFirstElapsed = new TimeSpan(0, 5, 0);
+            var secondCheck = new DateTime(2010, 11, 17, 6, 10, 0);
+            var expectedSecondElapsed = new TimeSpan(0, 10, 0);
+            var time = Create.TimeProvider.MockThatReturns(startTime);
+            var component = Create.TimerComponent.With(Create.Timer.ThatWorks(), time.Object);
+            component.Start(5.Minutes());
+            time.Setup(x => x.Now).Returns(firstCheck);
+            var firstElapsed = component.Elapsed;
+            time.Setup(x => x.Now).Returns(secondCheck);
+            var secondElapsed = component.Elapsed;
+            Assert.Equal(expectedFirstElapsed, firstElapsed);
+            Assert.Equal(expectedSecondElapsed, secondElapsed);
+        }
+
         // TODO (RC): Add TimeStarted to TimerComponent.Started EventArgs
         // TODO (RC): Add Elapsed to TimerComponent.Stopped EventArgs
         // TODO (RC): Add TimeStopped to TimerComponent.Stopped EventArgs
