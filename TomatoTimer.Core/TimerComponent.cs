@@ -14,12 +14,13 @@ namespace TomatoTimer.Core
         public TimeSpan Interval = new TimeSpan(0, 0, 0, 1);
 
         #region Events
-        public event EventHandler TimerStarted;
+        public event EventHandler<TimerStartedEventArgs> TimerStarted;
         protected void OnTimerStarted()
         {
             if (TimerStarted != null)
             {
-                TimerStarted(this, EventArgs.Empty);
+                var args = new TimerStartedEventArgs(startTime);
+                TimerStarted(this, args);
             }
         }
 

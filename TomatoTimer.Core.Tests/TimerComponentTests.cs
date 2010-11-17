@@ -1,9 +1,7 @@
-﻿using TomatoTimer.Core;
-using Xunit;
-using System;
-using System.Threading;
-using TomatoTimer.Core.Tests.Factories;
+﻿using System;
 using TomatoTimer.Core.Helpers;
+using TomatoTimer.Core.Tests.Factories;
+using Xunit;
 
 namespace TomatoTimer.Core.Tests.Timer_Component
 {
@@ -91,10 +89,20 @@ namespace TomatoTimer.Core.Tests.Timer_Component
         public void Start_IsStopped_RaisesTimerStartedEvent()
         {
             var raised = false;
-            var component = Create.TimerComponent.ThatWorks();
-            component.TimerStarted += (sender, args) => raised = true;
+            var raisedTimeStarted = DateTime.MinValue;
+            var expectedTimeStarted = new DateTime(2010, 11, 17, 6, 34, 0);
+            var timeProvider = Create.TimeProvider.ThatReturns(expectedTimeStarted);
+            var component = Create.TimerComponent.With(Create.Timer.ThatWorks(), timeProvider);
+            component.TimerStarted += (sender, args) =>
+                {
+                    raised = true;
+                    raisedTimeStarted = args.TimeStarted;
+                };
+            
             component.Start(5.Minutes());
+
             Assert.True(raised);
+            Assert.Equal(expectedTimeStarted, raisedTimeStarted);
         }
 
         [Fact]
@@ -126,6 +134,9 @@ namespace TomatoTimer.Core.Tests.Timer_Component
             component.Stop();
             Assert.True(raised);
         }
+
+        // TODO (RC): Add Elapsed to TimerComponent.Stopped EventArgs
+        // TODO (RC): Add TimeStopped to TimerComponent.Stopped EventArgs
 
         [Fact]
         public void Elapsed_AfterStartAndStop_IsRunTimeNotCurrentTime()
@@ -164,9 +175,5 @@ namespace TomatoTimer.Core.Tests.Timer_Component
             Assert.Equal(expectedFirstElapsed, firstElapsed);
             Assert.Equal(expectedSecondElapsed, secondElapsed);
         }
-
-        // TODO (RC): Add TimeStarted to TimerComponent.Started EventArgs
-        // TODO (RC): Add Elapsed to TimerComponent.Stopped EventArgs
-        // TODO (RC): Add TimeStopped to TimerComponent.Stopped EventArgs
     }
 }

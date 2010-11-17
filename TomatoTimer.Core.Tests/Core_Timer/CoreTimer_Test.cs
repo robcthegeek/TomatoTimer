@@ -22,33 +22,33 @@ namespace TomatoTimer.Core.Tests.Core_Timer
 
         protected void RaiseTimerComponentStarted()
         {
-            timerComponent.Raise(x => x.TimerStarted += null, this, EventArgs.Empty);
+            timerComponent.Raise(x => x.TimerStarted += null, this, new TimerStartedEventArgs(DateTime.Now));
         }
 
         protected void RaiseTimerComponentStopped()
         {
-            timerComponent.Raise(x => x.TimerStopped += null, this, EventArgs.Empty);
+            timerComponent.Raise(x => x.TimerStopped += null, this, new TimerStartedEventArgs(DateTime.Now));
         }
 
         protected void StartTomato()
         {
             timer.StartTomato();
             timerComponent.Setup(x => x.Start(timer.TomatoTimeSpan));
-            timerComponent.Raise(x => x.TimerStarted += null, this, EventArgs.Empty);
+            timerComponent.Raise(x => x.TimerStarted += null, this, new TimerStartedEventArgs(DateTime.Now));
         }
 
         protected void StartBreak()
         {
             timer.StartBreak();
             timerComponent.Setup(x => x.Start(timer.BreakTimeSpan));
-            timerComponent.Raise(x => x.TimerStarted += null, this, EventArgs.Empty);
+            timerComponent.Raise(x => x.TimerStarted += null, this, new TimerStartedEventArgs(DateTime.Now));
         }
 
         public void StartSetBreak()
         {
             timer.StartSetBreak();
             timerComponent.Setup(x => x.Start(timer.SetBreakTimeSpan));
-            timerComponent.Raise(x => x.TimerStarted += null, this, EventArgs.Empty);
+            timerComponent.Raise(x => x.TimerStarted += null, this, new TimerStartedEventArgs(DateTime.Now));
         }
 
         protected void AssertTomatoStartedEventRaised(bool assert)

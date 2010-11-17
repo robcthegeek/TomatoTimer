@@ -95,6 +95,7 @@
     <Compile Include="Timer\States\TransitionClassBase.cs" />
     <Compile Include="Timer\TimerEventArgs.cs" />
     <Compile Include="TimeSpanExtensions.cs" />
+    <Compile Include="TimerStartedEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
