@@ -19,5 +19,12 @@ namespace TomatoTimer.Core.Tests.Factories
             mock.Setup(x => x.Now).Returns(value);
             return mock.Object;
         }
+
+        public Mock<ICurrentTimeProvider> MockThatReturns(DateTime value)
+        {
+            var mock = new Mock<ICurrentTimeProvider>();
+            mock.Setup(x => x.Now).Returns(value);
+            return mock;
+        }
     }
 }

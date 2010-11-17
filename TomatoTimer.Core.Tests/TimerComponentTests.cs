@@ -127,7 +127,24 @@ namespace TomatoTimer.Core.Tests.Timer_Component
             Assert.True(raised);
         }
 
-        // TODO (RC): Elapsed After Start and Stop is Run Time
+        [Fact]
+        public void Elapsed_AfterStartAndStop_IsRunTimeNotCurrentTime()
+        {
+            // Ensures the "Current Time" is Not Queried After Stopping
+            var startTime = new DateTime(2010, 11, 17, 6, 0, 0);
+            var stopTime = new DateTime(2010, 11, 17, 6, 5, 0);
+            var timeAfterStop = new DateTime(2010, 11, 17, 7, 0, 0);
+            var expectedElapsed = new TimeSpan(0, 5, 0);
+            var time = Create.TimeProvider.MockThatReturns(startTime);
+            var component = Create.TimerComponent.With(Create.Timer.ThatWorks(), time.Object);
+            component.Start(5.Minutes());
+            time.Setup(x => x.Now).Returns(stopTime);
+            component.Stop();
+            time.Setup(x => x.Now).Returns(timeAfterStop);
+            var elapsed = component.Elapsed;
+            Assert.Equal(expectedElapsed, elapsed);
+        }
+
         // TODO (RC): Elapsed While Running Continuously Re-Calcs Running Time
         // TODO (RC): Add TimeStarted to TimerComponent.Started EventArgs
         // TODO (RC): Add Elapsed to TimerComponent.Stopped EventArgs

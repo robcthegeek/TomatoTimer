@@ -84,9 +84,9 @@ namespace TomatoTimer.Core
         {
             get
             {
-                if (!timer.IsEnabled)
-                    return startTime.TimeSpanBetween(stoppedTime);
-                return startTime.TimeSpanBetween(DateTime.Now);
+                return timer.IsEnabled ?
+                    startTime.TimeSpanBetween(time.Now) :
+                    startTime.TimeSpanBetween(stoppedTime);
             }
         }
 
@@ -100,7 +100,7 @@ namespace TomatoTimer.Core
                 throw new InvalidOperationException(
                     "Timer component is already running. Please Stop before calling Start again.");
 
-            startTime = DateTime.Now;
+            startTime = time.Now;
             stopTime = DateTime.Now.Add(timeSpan);            
             timer.Start();
             timer.Interval = Interval;
@@ -127,7 +127,7 @@ namespace TomatoTimer.Core
             timer.Interval = TimeSpan.Zero;
             ResetTimes();
             timer.Stop();
-            stoppedTime = DateTime.Now;
+            stoppedTime = time.Now;
             OnTimerStopped();
         }
 
