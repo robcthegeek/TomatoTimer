@@ -24,12 +24,14 @@ namespace TomatoTimer.Core
             }
         }
 
-        public event EventHandler TimerStopped;
+        public event EventHandler<TimerStoppedEventArgs> TimerStopped;
         protected void OnTimerStopped()
         {
             if (TimerStopped != null)
             {
-                TimerStopped(this, EventArgs.Empty);
+                var args = new TimerStoppedEventArgs(
+                    stoppedTime, stoppedTime.Subtract(startTime));
+                TimerStopped(this, args);
             }
         }
 

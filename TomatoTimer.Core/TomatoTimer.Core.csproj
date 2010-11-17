@@ -78,6 +78,7 @@
     <Compile Include="Timer.cs" />
     <Compile Include="ITimer.cs" />
     <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="TimerStoppedEventArgs.cs" />
     <Compile Include="Timer\TickEventArgs.cs" />
     <Compile Include="Timer\States\InterruptedState.cs" />
     <Compile Include="Timer\ITomatoTimer.cs" />

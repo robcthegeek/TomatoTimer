@@ -27,7 +27,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
 
         protected void RaiseTimerComponentStopped()
         {
-            timerComponent.Raise(x => x.TimerStopped += null, this, new TimerStartedEventArgs(DateTime.Now));
+            timerComponent.Raise(x => x.TimerStopped += null, this, new TimerStoppedEventArgs(DateTime.Now, TimeSpan.MinValue));
         }
 
         protected void StartTomato()

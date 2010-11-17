@@ -128,15 +128,28 @@ namespace TomatoTimer.Core.Tests.Timer_Component
         public void Stop_AfterStart_RaisesTimerStoppedEvent()
         {
             var raised = false;
-            var component = Create.TimerComponent.ThatWorks();
-            component.TimerStopped += (sender, args) => raised = true;
-            component.Start(5.Minutes());
-            component.Stop();
-            Assert.True(raised);
-        }
+            var timeStarted = new DateTime(2010, 11, 16, 6, 50, 0);
+            var timeStopped = new DateTime(2010, 11, 16, 6, 55, 0);
+            var expectedElapsed = new TimeSpan(0, 5, 0);
+            var raisedTimeStopped = DateTime.MinValue;
+            var raisedElapsed = TimeSpan.Zero;
+            var timeProvider = Create.TimeProvider.MockThatReturns(timeStarted);
+            var component = Create.TimerComponent.With(Create.Timer.ThatWorks(), timeProvider.Object);
+            component.TimerStopped += (sender, args) =>
+                {
+                    raisedTimeStopped = args.TimeStopped;
+                    raisedElapsed = args.Elapsed;
+                    raised = true;
+                };
 
-        // TODO (RC): Add Elapsed to TimerComponent.Stopped EventArgs
-        // TODO (RC): Add TimeStopped to TimerComponent.Stopped EventArgs
+            component.Start(5.Minutes());
+            timeProvider.Setup(x => x.Now).Returns(timeStopped);
+            component.Stop();
+            
+            Assert.True(raised);
+            Assert.Equal(timeStopped, raisedTimeStopped);
+            Assert.Equal(expectedElapsed, raisedElapsed);
+        }
 
         [Fact]
         public void Elapsed_AfterStartAndStop_IsRunTimeNotCurrentTime()

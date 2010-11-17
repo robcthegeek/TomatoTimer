@@ -5,7 +5,7 @@ namespace TomatoTimer.Core
     public interface ITimerComponent
     {
         event EventHandler<TimerStartedEventArgs> TimerStarted;
-        event EventHandler TimerStopped;
+        event EventHandler<TimerStoppedEventArgs> TimerStopped;
         event EventHandler<TickEventArgs> Tick;
 
         TimeSpan Remaining { get; }
