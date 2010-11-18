@@ -17,7 +17,17 @@
 
 ## ToDo
 
-- Migrate ReadMe.txt to Wiki on GitHub
-	- Create Release Notes Page
-	- Create Requirements Page
-	- Create Overview Page
+### Migrate ReadMe.txt to Wiki on GitHub
+	
+- Create Release Notes Page
+- Create Requirements Page
+- Create Overview Page
+	
+### Re-Implement the Async Method Manager
+
+- Design
+	- Completely De-Couple the "Method Runner" from the Rest of the Application.
+	- Write as Simple Single-Threaded to "Get Running"
+	- Spike using the .NET Parallel bits, will they work?
+	- What About Plugin *Types* (e.g. Background, Windowed?)
+- Re-Build Tests from Ground Up
