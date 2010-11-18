@@ -17,5 +17,7 @@
 
 ## ToDo
 
-- Remove all the "app settings" crap and promote to configuration sections in the Application Config file.
-- Remove the user settings - they are either doing Pomodoro or not :P (can re-implement in a cleaner fashion if needed).
+- Migrate ReadMe.txt to Wiki on GitHub
+	- Create Release Notes Page
+	- Create Requirements Page
+	- Create Overview Page

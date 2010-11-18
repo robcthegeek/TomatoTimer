@@ -8,7 +8,6 @@ using TomatoTimer.Core;
 using TomatoTimer.Plugins;
 using TomatoTimer.UI.Graphics;
 using TomatoTimer.UI.PluginModel;
-using TomatoTimer.UI.Settings;
 
 namespace TomatoTimer.UI
 {
@@ -57,9 +56,13 @@ namespace TomatoTimer.UI
 
         private void SetWindowTitle()
         {
-            var version = Assembly.GetExecutingAssembly().Version();
+            var version = string.Format(
+                "(v{0}.{1}.{2})",
+                Environment.Version.Major,
+                Environment.Version.Minor,
+                Environment.Version.Revision);
             var appTitle = Constants.APP_TITLE;
-            Title = string.Format("{0} (v{1})", appTitle, version);
+            Title = string.Format("{0} {1}", appTitle, version);
         }
 
         private void InitHotKeys()

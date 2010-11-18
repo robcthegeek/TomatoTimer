@@ -4,7 +4,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using TomatoTimer.Core;
 using TomatoTimer.UI.Graphics;
-using TomatoTimer.UI.Settings;
 
 namespace TomatoTimer.UI.PluginModel.Default
 {
@@ -14,17 +13,16 @@ namespace TomatoTimer.UI.PluginModel.Default
     internal partial class MiniTimer : Window
     {       
         private const int FADE_DURATION = 250;
-        private Color startBGColor;
-        private Color endBGColor;
-        private Color startFGColor;
-        private Color endFGColor;
+        private Color startBGColor = Colors.Green;
+        private Color endBGColor = Colors.Red;
+        private Color startFGColor = Colors.Black;
+        private Color endFGColor = Colors.Black;
         private bool mouseHasLeft;
 
         public MiniTimer()
         { 
             InitializeComponent();
             SetupWindowPosition();
-            ReadSettings();
         }
 
         private void StartRunning()
@@ -80,17 +78,6 @@ namespace TomatoTimer.UI.PluginModel.Default
             var screenSize = new Size(SystemParameters.PrimaryScreenWidth, SystemParameters.WorkArea.Height);
             Top = 0;
             Left = (screenSize.Width - Width) / 2;
-        }
-
-        /// <summary>
-        /// Reads the Settings from the User Configuration File.
-        /// </summary>
-        private void ReadSettings()
-        {
-            startBGColor = Current.User.StartBGColor;
-            endBGColor = Current.User.EndBGColor;
-            startFGColor = Current.User.StartFGColor;
-            endFGColor = Current.User.EndFGColor;
         }
 
         /// <summary>

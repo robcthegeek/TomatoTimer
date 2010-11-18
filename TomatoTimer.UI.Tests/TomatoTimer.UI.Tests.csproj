@@ -94,10 +94,6 @@
     <Compile Include="UI\Plugins\DummyPlugin.cs" />
     <Compile Include="UI\Plugins\PluginsCollectionTests.cs" />
     <Compile Include="UI\ColorExtensionsTests.cs" />
-    <Compile Include="UI\Settings\DefaultUserSettingsXml.cs" />
-    <Compile Include="UI\Settings\UserSettingsTests.cs" />
-    <Compile Include="UI\Settings\UserSettingsXmlDeserialisationTests.cs" />
-    <Compile Include="UI\Settings\UserSettingsXmlSerialisationTests.cs" />
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>

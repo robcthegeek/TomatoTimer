@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using TomatoTimer.Core.Helpers;
 
 namespace TomatoTimer.UI
 {
     internal static class Constants
     {
-        // TODO (RC): Pull App Title/Contact Email from App Settings
         public const string APP_TITLE = "Tomato Timer";
         public const string CONTACT_EMAIL = "robcthegeek.public@gmail.com";
+
+        public static TimeSpan TomatoTime      { get { return 25.Minutes(); } }
+        public static TimeSpan BreakTime       { get { return 5.Minutes();  } }
+        public static TimeSpan SetBreakTime    { get { return 30.Minutes(); } }
     }
 }

@@ -6,7 +6,6 @@ using System.Text;
 using System.Windows.Forms;
 using TomatoTimer.Core;
 using TomatoTimer.Plugins;
-using TomatoTimer.UI.Settings;
 
 namespace TomatoTimer.UI.PluginModel.Default
 {

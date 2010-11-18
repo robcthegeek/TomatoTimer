@@ -48,17 +48,16 @@ namespace TomatoTimer.UI
         private static ITomatoTimer CreateTimerFromSettings()
         {
             // HACK: This Configuration Should be Managed By AppController
-            // Load Timings from Configuration.
-            var tomatoLen = Settings.Current.User.TomatoTime;
-            var breakLen = Settings.Current.User.BreakTime;
-            var setBreakLen = Settings.Current.User.SetBreakTime;
+            var tomatoLen = Constants.TomatoTime;
+            var breakLen = Constants.BreakTime;
+            var setBreakLen = Constants.SetBreakTime;
 
             var dispatcherTimer = new Timer();
             var timer = new CoreTimer(new TimerComponent(dispatcherTimer, dispatcherTimer))
             {
-                TomatoTimeSpan = new TimeSpan(0, 0, tomatoLen, 0),
-                BreakTimeSpan = new TimeSpan(0, 0, breakLen, 0),
-                SetBreakTimeSpan = new TimeSpan(0, 0, setBreakLen, 0)
+                TomatoTimeSpan = tomatoLen,
+                BreakTimeSpan = breakLen,
+                SetBreakTimeSpan = setBreakLen
             };
 
 #if DEBUG
