@@ -75,6 +75,10 @@
     <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="Helpers\TimeSpanHelpers.cs" />
     <Compile Include="ICurrentTimeProvider.cs" />
+    <Compile Include="Plugins\AsyncMethodCompletedEventArgs.cs" />
+    <Compile Include="Plugins\AsyncMethodHook.cs" />
+    <Compile Include="Plugins\AsyncMethodManager.cs" />
+    <Compile Include="Plugins\AsyncMethodStartedEventArgs.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="ITimer.cs" />
     <Compile Include="DateTimeExtensions.cs" />
@@ -115,6 +119,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
