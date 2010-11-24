@@ -30,14 +30,12 @@
 			- When Running Methods from Plugins, We Need to Track Them.
 			- We Should Be Able to Cancel Them
 			- We Should Be Able to Cancel Groups (?)
-			- Method Runner Needs to Return a "Hook" to the Running Method. This "Hook" can then
-				- Alert when the task has been completed.
-				- Be used to cancel the running task.
-				- Pause the running task.
-				- How do we handle marshalling back to the UI thread?
-					- "Hook" to an event to the UI to update? 
-					- "Windowed" plugins will be given a reference to Dispatcher?
-	- Write as Simple Single-Threaded to "Get Running"
-	- Spike using the .NET Parallel bits, will they work?
-	- What About Plugin *Types* (e.g. Background, Windowed?)
-- Re-Build Tests from Ground Up
+			- Method Runner Needs to Return a "Hook" to the Running Method. This "Hook" can then:
+				- Cancel the Method
+				- Raise MethodStarted, MethodCancelled, MethodCompleted Events
+	- Re-Build Using Parallel Tasks
+		> Be Sure to Create Token from `CancellationTokenSource`. Each Plugin Method Requires It's Own Source.
+	- Different Plugins Will Have Different Requirements:
+		- **Background**: Simple plugin that runs code (e.g. Mp3 Player)
+		- **Windowed**: Given hooks to dispatcher thread to update UI.
+		- **Web**: Given Simplified HTTP Interface to Make Web Requests. (?)
