@@ -31,7 +31,6 @@
   - We Should Be Able to Cancel Them
   - We Should Be Able to Cancel Groups (?)
   - Implement IAsyncMethod
-  - Create Interface w/ Events `MethodStarted`, `MethodCancelled`, `MethodCompleted` and `Run`/`Cancel` Methods
   - Create Integration Tests Library
   - Implement Using Parallel Tasks
     > Be Sure to Create Token from `CancellationTokenSource`. Each Plugin Method Requires It's Own Source.
