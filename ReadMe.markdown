@@ -27,15 +27,15 @@
 
 - Design
 	- Completely De-Couple the "Method Runner" from the Rest of the Application.
-			- When Running Methods from Plugins, We Need to Track Them.
-			- We Should Be Able to Cancel Them
-			- We Should Be Able to Cancel Groups (?)
-			- Method Runner Needs to Return a "Hook" to the Running Method. This "Hook" can then:
-				- Cancel the Method
-				- Raise MethodStarted, MethodCancelled, MethodCompleted Events
-	- Re-Build Using Parallel Tasks
-		> Be Sure to Create Token from `CancellationTokenSource`. Each Plugin Method Requires It's Own Source.
-	- Different Plugins Will Have Different Requirements:
-		- **Background**: Simple plugin that runs code (e.g. Mp3 Player)
-		- **Windowed**: Given hooks to dispatcher thread to update UI.
-		- **Web**: Given Simplified HTTP Interface to Make Web Requests. (?)
+  - When Running Methods from Plugins, We Need to Track Them.
+  - We Should Be Able to Cancel Them
+  - We Should Be Able to Cancel Groups (?)
+  - Implement IAsyncMethod
+  - Create Interface w/ Events `MethodStarted`, `MethodCancelled`, `MethodCompleted` and `Run`/`Cancel` Methods
+  - Create Integration Tests Library
+  - Implement Using Parallel Tasks
+    > Be Sure to Create Token from `CancellationTokenSource`. Each Plugin Method Requires It's Own Source.
+  - Different Plugins Will Have Different Requirements:
+        - **Background**: Simple plugin that runs code (e.g. Mp3 Player)
+        - **Windowed**: Given hooks to dispatcher thread to update UI.
+        - **Web**: Given Simplified HTTP Interface to Make Web Requests. (?)

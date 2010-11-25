@@ -76,8 +76,6 @@
     <Compile Include="Helpers\TimeSpanHelpers.cs" />
     <Compile Include="ICurrentTimeProvider.cs" />
     <Compile Include="Plugins\AsyncMethodCompletedEventArgs.cs" />
-    <Compile Include="Plugins\AsyncMethodHook.cs" />
-    <Compile Include="Plugins\AsyncMethodManager.cs" />
     <Compile Include="Plugins\AsyncMethodStartedEventArgs.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="ITimer.cs" />

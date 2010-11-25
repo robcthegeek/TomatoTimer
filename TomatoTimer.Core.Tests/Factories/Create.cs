@@ -26,6 +26,5 @@ namespace TomatoTimer.Core.Tests.Factories
                 return new CurrentTimeProviderFactory();
             }
         }
-
     }
 }
