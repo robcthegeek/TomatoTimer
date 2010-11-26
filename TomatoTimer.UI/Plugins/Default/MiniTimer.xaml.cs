@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using TomatoTimer.Core;
 using TomatoTimer.UI.Graphics;
+using System.Windows.Threading;
 
 namespace TomatoTimer.UI.Plugins.Default
 {
@@ -11,7 +12,8 @@ namespace TomatoTimer.UI.Plugins.Default
     /// MiniTimer Window Used to Display the Time Remaining to the User.
     /// </summary>
     internal partial class MiniTimer : Window
-    {       
+    {
+        private readonly Dispatcher dispatcher;
         private const int FADE_DURATION = 250;
         private Color startBGColor = Colors.Green;
         private Color endBGColor = Colors.Red;
@@ -22,6 +24,7 @@ namespace TomatoTimer.UI.Plugins.Default
         public MiniTimer()
         { 
             InitializeComponent();
+            dispatcher = Dispatcher;
             SetupWindowPosition();
         }
 

@@ -77,6 +77,7 @@
     <Compile Include="Plugins\AsyncMethodCompletedEventArgs.cs" />
     <Compile Include="Plugins\AsyncMethodStartedEventArgs.cs" />
     <Compile Include="Plugins\AsyncMethodCancelledEventArgs.cs" />
+    <Compile Include="Plugins\AsyncMethodExceptionOccurredEventArgs.cs" />
     <Compile Include="Plugins\IAsyncMethod.cs" />
     <Compile Include="Plugins\ParallelAsyncMethod.cs" />
     <Compile Include="Timer.cs" />

@@ -123,8 +123,19 @@ namespace TomatoTimer.Core.Tests.Integration.Plugins
             Thread.Sleep(150);
             Assert.False(executed);
         }
-        
-        // TODO (RC): Run and Blocking and Cancel Stops Execution
+
+        [Fact(Skip = "Unable to Get This Passing - What's the best way to get the Aggregate Exception (without blocking)?")]
+        public void Run_ActionThrows_RaisesExceptionOccurred()
+        {
+            var expected = new Exception("Something Bad Happened");
+            AsyncMethodExceptionOccurredEventArgs raised = null;
+            Action action = () => { throw expected; };
+            var method = new ParallelAsyncMethod(action);
+            method.ExceptionOccurred += (sender, args) => raised = args;
+            method.Run();
+            GiveSchedulerAChance();
+            Assert.Same(expected, raised.Exception);
+        }
 
         private static void GiveSchedulerAChance()
         {

@@ -9,7 +9,8 @@ using TomatoTimer.Plugins;
 
 namespace TomatoTimer.UI.Plugins.Default
 {
-    [Export(typeof(TimerEventPlugin))]
+    // TODO (RC): Re-Enabled Once Reviewed
+    //[Export(typeof(TimerEventPlugin))]
     public class NotifyIconPlugin : TimerEventPlugin
     {
         private NotifyIconComponent notify;

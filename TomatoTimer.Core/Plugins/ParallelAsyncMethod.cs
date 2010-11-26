@@ -40,6 +40,16 @@ namespace TomatoTimer.Core.Plugins
             }
         }
 
+        public event EventHandler<AsyncMethodExceptionOccurredEventArgs> ExceptionOccurred;
+        protected void RaiseExceptionOccurred(Exception ex)
+        {
+            var args = new AsyncMethodExceptionOccurredEventArgs(ex);
+            if (ExceptionOccurred != null)
+            {
+                ExceptionOccurred(this, args);
+            }
+        }
+
         private readonly CancellationTokenSource cancellationSource;
         private readonly TaskFactory taskFactory;
         private readonly Action action;

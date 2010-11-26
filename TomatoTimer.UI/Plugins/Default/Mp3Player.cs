@@ -6,7 +6,8 @@ using TomatoTimer.Plugins;
 
 namespace TomatoTimer.UI.Plugins.Default
 {
-    [Export(typeof(TimerEventPlugin))]
+    // TODO (RC): Re-Enable Once Reviewed
+    //[Export(typeof(TimerEventPlugin))]
     public class Mp3PlayerPlugin : TimerEventPlugin
     {
         private readonly MediaPlayer player;

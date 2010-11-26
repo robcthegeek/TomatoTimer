@@ -5,7 +5,8 @@ using TomatoTimer.Plugins;
 
 namespace TomatoTimer.UI.Plugins.Default
 {
-    [Export(typeof(TimerEventPlugin))]
+    // TODO (RC): Re-Enable Once Reviewed
+    //[Export(typeof(TimerEventPlugin))]
     public class MiniTimerWindow : TimerEventPlugin
     {
         private readonly MiniTimer win;

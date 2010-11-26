@@ -23,7 +23,6 @@ namespace TomatoTimer.Core
 
             public override void OnTransitionTo()
             {
-                CoreTimer.TimerComponent.Stop();
                 CoreTimer.OnTomatoEnded();
             }
         }

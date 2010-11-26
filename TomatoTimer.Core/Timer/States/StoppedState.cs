@@ -20,11 +20,6 @@ namespace TomatoTimer.Core
             {
                 get { return CoreTimer.timerStoppedState; }
             }
-
-            public override void OnTransitionTo()
-            {
-                CoreTimer.TimerComponent.Stop();
-            }
         }
     }
 }
