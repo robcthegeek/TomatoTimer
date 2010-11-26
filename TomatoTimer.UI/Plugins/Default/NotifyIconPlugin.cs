@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using TomatoTimer.Core;
 using TomatoTimer.Plugins;
 
-namespace TomatoTimer.UI.PluginModel.Default
+namespace TomatoTimer.UI.Plugins.Default
 {
     [Export(typeof(TimerEventPlugin))]
     public class NotifyIconPlugin : TimerEventPlugin

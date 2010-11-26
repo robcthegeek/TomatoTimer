@@ -108,7 +108,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PluginModel\Default\MiniTimer.xaml">
+    <Page Include="Plugins\Default\MiniTimer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <Generator>MSBuild:Compile</Generator>
@@ -127,21 +127,15 @@
   <ItemGroup>
     <Compile Include="Core\AppController.cs" />
     <Compile Include="Graphics\ControlExtensions.cs" />
-    <Compile Include="PluginModel\AsyncMethodManager.cs" />
-    <Compile Include="PluginModel\BackgroundWorkerAsyncMethod.cs" />
-    <Compile Include="PluginModel\Default\MiniTimerWindow.cs" />
-    <Compile Include="PluginModel\Default\Mp3Player.cs" />
-    <Compile Include="PluginModel\Default\NotifyIconPlugin.cs" />
-    <Compile Include="PluginModel\ExecutionContext.cs" />
-    <Compile Include="PluginModel\IAsyncMethod.cs" />
-    <Compile Include="PluginModel\IAsyncMethodManager.cs" />
-    <Compile Include="PluginModel\PluginsCollection.cs" />
+    <Compile Include="Plugins\Default\MiniTimerWindow.cs" />
+    <Compile Include="Plugins\Default\Mp3Player.cs" />
+    <Compile Include="Plugins\Default\NotifyIconPlugin.cs" />
     <Compile Include="SingleInstanceApp.cs" />
     <Compile Include="BalloonTipEventArgs.cs" />
     <Compile Include="Graphics\BrushExtensions.cs" />
     <Compile Include="Graphics\ColorExtensions.cs" />
     <Compile Include="HotKeys.cs" />
-    <Compile Include="PluginModel\Default\MiniTimer.xaml.cs">
+    <Compile Include="Plugins\Default\MiniTimer.xaml.cs">
       <DependentUpon>MiniTimer.xaml</DependentUpon>
     </Compile>
     <Compile Include="NotifyIconComponent.cs">

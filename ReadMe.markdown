@@ -27,8 +27,8 @@
 
 - Design
 	- Completely De-Couple the "Method Runner" from the Rest of the Application.
-  - When Running Methods from Plugins, We Need to Track Them.
-  - We Should Be Able to Cancel Groups (?)
+      - Create AsyncMethods Collection/Manager.
+      - Enable Cancellation of Running Methods.
   - Different Plugins Will Have Different Requirements:
         - **Background**: Simple plugin that runs code (e.g. Mp3 Player)
         - **Windowed**: Given hooks to dispatcher thread to update UI.

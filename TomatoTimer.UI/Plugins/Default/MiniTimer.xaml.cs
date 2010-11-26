@@ -5,7 +5,7 @@ using System.Windows.Media;
 using TomatoTimer.Core;
 using TomatoTimer.UI.Graphics;
 
-namespace TomatoTimer.UI.PluginModel.Default
+namespace TomatoTimer.UI.Plugins.Default
 {
     /// <summary>
     /// MiniTimer Window Used to Display the Time Remaining to the User.

@@ -87,12 +87,6 @@
       <DependentUpon>TestResources.resx</DependentUpon>
     </Compile>
     <Compile Include="UI\BrushExtensionsTest.cs" />
-    <Compile Include="UI\Plugins\AsyncMethodManagerTest.cs" />
-    <Compile Include="UI\Plugins\AsyncMethodManagerTests.cs" />
-    <Compile Include="UI\Plugins\AsyncMethodMangerTest_When_Abortable.cs" />
-    <Compile Include="UI\Plugins\AsyncMethodMangerTest_When_Not_Abortable.cs" />
-    <Compile Include="UI\Plugins\DummyPlugin.cs" />
-    <Compile Include="UI\Plugins\PluginsCollectionTests.cs" />
     <Compile Include="UI\ColorExtensionsTests.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,8 @@ using System.Windows;
 using TomatoTimer.Core;
 using TomatoTimer.Plugins;
 using TomatoTimer.UI.Graphics;
-using TomatoTimer.UI.PluginModel;
+using TomatoTimer.UI.Plugins;
+using TomatoTimer.Core.Plugins;
 
 namespace TomatoTimer.UI
 {
@@ -30,7 +31,6 @@ namespace TomatoTimer.UI
 
         [ImportMany(typeof(TimerEventPlugin))]
         List<TimerEventPlugin> TimerEventPluginImports { get; set; }
-        AsyncMethodManager<TimerEventPlugin> ExecutingTimerEventPlugins { get; set; }
 
         public Main(ITomatoTimer timer)
         {
@@ -50,8 +50,6 @@ namespace TomatoTimer.UI
             var asmCat = new AssemblyCatalog(Assembly.GetExecutingAssembly());
             var container = new CompositionContainer(asmCat);
             container.ComposeParts(this);
-
-            ExecutingTimerEventPlugins = new AsyncMethodManager<TimerEventPlugin>();
         }
 
         private void SetWindowTitle()
@@ -91,7 +89,11 @@ namespace TomatoTimer.UI
         {
             foreach (var plugin in TimerEventPluginImports)
             {
-                ExecutingTimerEventPlugins.ExecuteAsync(plugin, (p, c) => action(p));
+                Action actionToRun = () => {
+                        action(plugin);
+                    };
+                var method = new ParallelAsyncMethod(actionToRun);
+                method.Run();
             }
         }
 

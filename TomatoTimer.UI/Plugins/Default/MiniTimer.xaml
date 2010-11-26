@@ -1,4 +1,4 @@
-﻿<Window x:Class="TomatoTimer.UI.PluginModel.Default.MiniTimer"
+﻿<Window x:Class="TomatoTimer.UI.Plugins.Default.MiniTimer"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="" Width="300" ResizeMode="CanResizeWithGrip" Height="60" ShowInTaskbar="False" MouseDown="Window_MouseDown" MinWidth="250" MinHeight="50" Topmost="True" WindowStyle="None" MouseDoubleClick="Window_MouseDoubleClick" AllowsTransparency="False" x:ClassModifier="internal">
