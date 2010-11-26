@@ -2,7 +2,7 @@ using System;
 
 namespace TomatoTimer.Core
 {
-    public partial class CoreTimer
+    public partial class TomatoTimer
     {
         public abstract class TransitionClassBase : TimerState
         {
@@ -10,7 +10,7 @@ namespace TomatoTimer.Core
 
             protected abstract string StateName { get; }
 
-            public TransitionClassBase(CoreTimer coreTimer)
+            public TransitionClassBase(TomatoTimer coreTimer)
                 : base(coreTimer)
             {
             }

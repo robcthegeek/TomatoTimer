@@ -30,7 +30,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         [Fact]
         public void State_StopppedState()
         {
-            Assert.True(timer.State is CoreTimer.StoppedState);
+            Assert.True(timer.State is TomatoTimer.StoppedState);
         }
 
         [Fact]

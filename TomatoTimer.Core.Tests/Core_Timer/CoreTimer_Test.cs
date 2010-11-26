@@ -16,7 +16,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         protected CoreTimer_Tests()
         {
             timerComponent = new Mock<ITimerComponent>();
-            timer = new CoreTimer(timerComponent.Object);
+            timer = new TomatoTimer(timerComponent.Object);
             monitor = new TomatoEventMonitor(timer);
         }
 

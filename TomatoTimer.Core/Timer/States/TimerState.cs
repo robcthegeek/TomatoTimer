@@ -1,12 +1,12 @@
 ﻿namespace TomatoTimer.Core
 {
-    public partial class CoreTimer
+    public partial class TomatoTimer
     {
         public abstract class TimerState
         {
-            protected CoreTimer CoreTimer { get; private set; }
+            protected TomatoTimer CoreTimer { get; private set; }
 
-            protected TimerState(CoreTimer coreTimer)
+            protected TimerState(TomatoTimer coreTimer)
             {
                 CoreTimer = coreTimer;
             }

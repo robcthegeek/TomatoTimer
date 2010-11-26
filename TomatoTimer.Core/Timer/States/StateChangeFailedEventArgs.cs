@@ -1,5 +1,5 @@
 ﻿using System;
-using TimerState = TomatoTimer.Core.CoreTimer.TimerState;
+using TimerState = TomatoTimer.Core.TomatoTimer.TimerState;
 
 namespace TomatoTimer.Core
 {

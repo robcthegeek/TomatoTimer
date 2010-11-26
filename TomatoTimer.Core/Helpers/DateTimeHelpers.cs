@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace TomatoTimer.Core
+namespace TomatoTimer.Core.Helpers
 {
-    public static class DateTimeExtensions
+    public static class DateTimeHelpers
     {
         /// <summary>
         /// Subtracts 'date1' from 'date2' to Determine the TimeSpan Between the Two Dates.

@@ -72,7 +72,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="Helpers\TimeSpanHelpers.cs" />
     <Compile Include="ICurrentTimeProvider.cs" />
     <Compile Include="Plugins\AsyncMethodCompletedEventArgs.cs" />
@@ -82,7 +81,7 @@
     <Compile Include="Plugins\ParallelAsyncMethod.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="ITimer.cs" />
-    <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="Helpers\DateTimeHelpers.cs" />
     <Compile Include="TimerStoppedEventArgs.cs" />
     <Compile Include="Timer\TickEventArgs.cs" />
     <Compile Include="Timer\States\InterruptedState.cs" />
@@ -91,7 +90,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Timer\States\SetBreakRunningState.cs" />
     <Compile Include="Timer\States\StateChangeFailedEventArgs.cs" />
-    <Compile Include="Timer\CoreTimer.cs" />
+    <Compile Include="Timer\TomatoTimer.cs" />
     <Compile Include="TimerComponent.cs" />
     <Compile Include="Timer\States\TimerState.cs" />
     <Compile Include="Timer\States\BreakRunningState.cs" />

@@ -2,7 +2,7 @@ using System;
 
 namespace TomatoTimer.Core
 {
-    public partial class CoreTimer : ITomatoTimer
+    public partial class TomatoTimer : ITomatoTimer
     {
         private ITimerComponent TimerComponent { get; set; }
         
@@ -154,7 +154,7 @@ namespace TomatoTimer.Core
             get { return TimerComponent.Remaining; }
         }
 
-        public CoreTimer(ITimerComponent timerComponent)
+        public TomatoTimer(ITimerComponent timerComponent)
         {
             RegisterTimerComponent(timerComponent);
             SpinUpStates();

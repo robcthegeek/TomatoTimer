@@ -72,7 +72,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyExtensionsTests.cs" />
     <Compile Include="DateTimeExtensionsTests.cs" />
     <Compile Include="Factories\Create.cs" />
     <Compile Include="Factories\CurrentTimeProviderFactory.cs" />

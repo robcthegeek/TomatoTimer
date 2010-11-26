@@ -94,7 +94,6 @@
     <Compile Include="UI\Plugins\DummyPlugin.cs" />
     <Compile Include="UI\Plugins\PluginsCollectionTests.cs" />
     <Compile Include="UI\ColorExtensionsTests.cs" />
-    <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CustomAppSettings.txt" />

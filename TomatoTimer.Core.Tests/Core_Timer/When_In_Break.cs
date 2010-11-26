@@ -36,7 +36,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         {
             timer.StartTomato();
             var e = monitor.StateChangeFailedEventArgs;
-            Assert.True(e.StateFrom is CoreTimer.BreakRunningState);
+            Assert.True(e.StateFrom is TomatoTimer.BreakRunningState);
         }
 
         [Fact]
@@ -44,7 +44,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         {
             timer.StartTomato();
             var e = monitor.StateChangeFailedEventArgs;
-            Assert.True(e.StateTo is CoreTimer.TomatoRunningState);
+            Assert.True(e.StateTo is TomatoTimer.TomatoRunningState);
         }
 
         [Fact]
@@ -67,7 +67,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         {
             timer.StartBreak();
             var e = monitor.StateChangeFailedEventArgs;
-            Assert.True(e.StateFrom is CoreTimer.BreakRunningState);
+            Assert.True(e.StateFrom is TomatoTimer.BreakRunningState);
         }
 
         [Fact]
@@ -75,7 +75,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         {
             timer.StartBreak();
             var e = monitor.StateChangeFailedEventArgs;
-            Assert.True(e.StateTo is CoreTimer.BreakRunningState);
+            Assert.True(e.StateTo is TomatoTimer.BreakRunningState);
         }
 
         [Fact]
@@ -105,7 +105,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         {
             timer.StartSetBreak();
             var e = monitor.StateChangeFailedEventArgs;
-            Assert.True(e.StateFrom is CoreTimer.BreakRunningState);
+            Assert.True(e.StateFrom is TomatoTimer.BreakRunningState);
         }
 
         [Fact]
@@ -113,7 +113,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         {
             timer.StartSetBreak();
             var e = monitor.StateChangeFailedEventArgs;
-            Assert.True(e.StateTo is CoreTimer.SetBreakRunningState);
+            Assert.True(e.StateTo is TomatoTimer.SetBreakRunningState);
         }
 
         [Fact]
@@ -128,7 +128,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         public void Interrupt_Sets_TimerStoppedState()
         {
             timer.Interrupt();
-            Assert.True(timer.State is CoreTimer.StoppedState);
+            Assert.True(timer.State is TomatoTimer.StoppedState);
         }
 
         [Fact]
@@ -148,7 +148,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         public void TimerComponentStopped_Sets_TimerStoppedState()
         {
             RaiseTimerComponentStopped();
-            Assert.True(timer.State is CoreTimer.StoppedState);
+            Assert.True(timer.State is TomatoTimer.StoppedState);
         }
 
         [Fact]

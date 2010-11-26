@@ -22,8 +22,8 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         {
             timer.StartTomato();
             var e = monitor.StateChangeFailedEventArgs;
-            Assert.True(e.StateFrom is CoreTimer.TomatoRunningState);
-            Assert.True(e.StateTo is CoreTimer.TomatoRunningState);
+            Assert.True(e.StateFrom is TomatoTimer.TomatoRunningState);
+            Assert.True(e.StateTo is TomatoTimer.TomatoRunningState);
         }
 
         [Fact]
@@ -39,8 +39,8 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         {
             timer.StartBreak();
             var e = monitor.StateChangeFailedEventArgs;
-            Assert.True(e.StateFrom is CoreTimer.TomatoRunningState);
-            Assert.True(e.StateTo is CoreTimer.BreakRunningState);
+            Assert.True(e.StateFrom is TomatoTimer.TomatoRunningState);
+            Assert.True(e.StateTo is TomatoTimer.BreakRunningState);
         }
 
         [Fact]
@@ -55,8 +55,8 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         {
             timer.StartSetBreak();
             var e = monitor.StateChangeFailedEventArgs;
-            Assert.True(e.StateFrom is CoreTimer.TomatoRunningState);
-            Assert.True(e.StateTo is CoreTimer.SetBreakRunningState);
+            Assert.True(e.StateFrom is TomatoTimer.TomatoRunningState);
+            Assert.True(e.StateTo is TomatoTimer.SetBreakRunningState);
         }
 
         [Fact]
@@ -88,7 +88,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         public void State_AfterInterrupt_InterruptedState()
         {
             timer.Interrupt();
-            Assert.True(timer.State is CoreTimer.InterruptedState);
+            Assert.True(timer.State is TomatoTimer.InterruptedState);
         }
 
         [Fact]
@@ -108,7 +108,7 @@ namespace TomatoTimer.Core.Tests.Core_Timer
         public void State_TimerComponentRaisesTimerComponentStopped_TomatoCompletedState()
         {
             RaiseTimerComponentStopped();
-            Assert.True(timer.State is CoreTimer.TomatoCompletedState);
+            Assert.True(timer.State is TomatoTimer.TomatoCompletedState);
         }
 
         [Fact]

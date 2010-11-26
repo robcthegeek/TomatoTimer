@@ -1,5 +1,5 @@
 ﻿using System;
-using TomatoTimer.Core;
+using TomatoTimer.Core.Helpers;
 using Xunit;
 
 namespace TomatoTimer.Core.Tests

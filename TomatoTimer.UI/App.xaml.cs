@@ -53,7 +53,7 @@ namespace TomatoTimer.UI
             var setBreakLen = Constants.SetBreakTime;
 
             var dispatcherTimer = new Timer();
-            var timer = new CoreTimer(new TimerComponent(dispatcherTimer, dispatcherTimer))
+            var timer = new TomatoTimer.Core.TomatoTimer(new TimerComponent(dispatcherTimer, dispatcherTimer))
             {
                 TomatoTimeSpan = tomatoLen,
                 BreakTimeSpan = breakLen,

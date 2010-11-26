@@ -18,7 +18,7 @@ namespace TomatoTimer.Core
         TimeSpan BreakTimeSpan { get; set; }
         TimeSpan SetBreakTimeSpan { get; set; }
         TimeSpan TimeRemaining { get; }
-        CoreTimer.TimerState State { get; }
+        TomatoTimer.TimerState State { get; }
         
         bool Running { get; }
         void StartTomato();

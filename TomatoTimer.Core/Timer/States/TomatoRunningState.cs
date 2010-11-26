@@ -2,11 +2,11 @@ using System;
 
 namespace TomatoTimer.Core
 {
-    public partial class CoreTimer
+    public partial class TomatoTimer
     {
         public class TomatoRunningState : TimerState
         {
-            public TomatoRunningState(CoreTimer coreTimer)
+            public TomatoRunningState(TomatoTimer coreTimer)
                 : base(coreTimer)
             {
             }
