@@ -4,6 +4,14 @@
 
 **WARNING**: Currently, the code is pretty trashed as I am ripping it to pieces (and lost the "clean" build due to system crash and my lack of commitment to a backup procedure :).
 
+## Project Canned
+
+I have been really struggling to get some motivation behind this project. If I am unable to get some steam behind it, I don't think I could build a product worth using (I am a huge fan of [dogfooding](http://en.wikipedia.org/wiki/Eating_your_own_dog_food).
+
+Therefore, **I have decided to no longer try and maintain this project**.
+
+I will naturally leave the code up here on GitHub for as long as possible. **It may be removed at some point, so if you are interested in the project, then I would recommend forking it.
+
 ## Roadmap
 
 - Re-write the plugin model.
